@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Youtube Influencer Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" crossorigin></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- <script src="static/js/lodash.js"></script> -->
+    <script src="https://unpkg.com/underscore@1.11.0/underscore-min.js" crossorigin></script>
+    <scrip src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h1>Mini Youtube</h1>
+    <form id="search-form">
+        <div class="form-group">
+            <h3>Keywords</h3> <input type="text" class="form-control" id="keywords" name="search">
+        </div>
+
+        <div class="form-group">
+            <label for="order"><h3>Order</h3></label>
+            <select class="form-control" id="order" name="order">
+              <option>Relevancy</option>
+              <option>Most Recently Published</option>
+              <option>Rating (Highest to Lowest)</option>
+              <option>View Count (Highest to Lowest)</option>
+            </select>
+          </div>
+
+        <div class="form-group">
+            <h3>Max Results</h3> <input type="text" class="form-control" id="max-results" name="max_results">
+        </div>  
+              
+        <div class="form-group">
+            <label for="published-before"><h3>Published Before</h3></label>
+              <input class="form-control" type="date" value="YYYY-MM-DD" id="published-before" name="published_before">
+            </div>
+
+        <div class="form-group">
+            <label for="published-after"><h3>Published After</h3></label>
+                <input class="form-control" type="date" value="YYYY-MM-DD" id="published-after" name="published_after">
+            </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" value="Submit">
+        </div>        
+</div>
+
+<div id="results"></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="videos">
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
