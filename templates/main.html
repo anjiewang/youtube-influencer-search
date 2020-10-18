@@ -17,10 +17,11 @@
 <body>
 <div class="container">
     <br>
-    <h1>Mini Youtube</h1>
+    <h1>Youtube Influencer Search</h1>
+    <br>
     <form id="search-form">
         <div class="form-group">
-            <h3>Keywords</h3> <input type="text" class="form-control" id="keywords" name="search">
+            <h3>Keywords</h3> <input type="text" class="form-control" id="keywords" name="search" required>
         </div>
 
         <div class="form-group">
@@ -32,10 +33,6 @@
               <option>View Count (Highest to Lowest)</option>
             </select>
           </div>
-
-        <div class="form-group">
-            <h3>Max Results</h3> <input type="text" class="form-control" id="max-results" name="max_results">
-        </div>  
               
         <div class="form-group">
             <label for="published-before"><h3>Published Before</h3></label>
@@ -52,7 +49,24 @@
         </div>        
 </div>
 
-<span id="results"></span>
+<div id="results"></div>
+
+<div class="table-responsive">
+
+    <table class="table table-bordered" id="results-table">
+    <tr>
+        <td>ID</td>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Video Count</td>
+        <td>View Count</td>
+        <td>Subscriber Count</td>
+        <td>Published Date</td>
+        <td>URL</td>
+    </tr>
+    
+    </table>
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -61,6 +75,6 @@
     </div>
 </div>
 
-<script src="/static/videos.js"></script>
+<script src="/static/channels.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, request, jsonify
 import requests
 import json
 from youtube import YoutubeVideoData
@@ -37,15 +36,16 @@ def youtube_video_search():
     elif order == "View Count (Highest to Lowest)":
         order = "viewCount"
     
-    max_results = request.args.get("max_results")
-    if max_results == "":
-        max_results = 25
+    # max_results = request.args.get("max_results")
+    # if max_results == "":
+    #     max_results = 25
 
 
     
-    kw_search = YoutubeVideoData(API_KEY, query, max_results, order, published_after, published_before)
+    kw_search = YoutubeVideoData(API_KEY, query, order, published_after, published_before)
+    channel_data = kw_search.get_youtube_data()
     
-    return str(kw_search.get_youtube_videos())
+    return jsonify({"channels":channel_data})
 
 
 if __name__ == "__main__":
