@@ -19,6 +19,8 @@ class YoutubeVideoData:
 
     
     def get_youtube_data(self):
+        # for keyword in self.query.split(", "): #TODO: where to put this for loop to loop through the keywords
+        
         search_url = "https://www.googleapis.com/youtube/v3/search"
         channel_url = "https://www.googleapis.com/youtube/v3/channels"
         

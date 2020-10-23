@@ -25,6 +25,7 @@ $('#search-form').on('submit', (evt) => {
               <td> ${channel.video_count} </td>
               <td> ${channel.view_count} </td>
               <td> ${channel.subscriber_count} </td>
+              <td> ${(channel.email).join("\n")} </td>
               <td> <a target='_blank' href=${channel.url}>Link</a></td>
               <td> <button type="button" class="btn btn-primary btn-sm btn-success" id="button-add">Add</button><br>
 
