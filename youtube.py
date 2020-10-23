@@ -1,6 +1,6 @@
 import requests
 import json
-from filters import filter_youtube_channels
+from filters import filter_by_subs
 
 class YoutubeVideoData:
 
@@ -38,6 +38,7 @@ class YoutubeVideoData:
 
         request = requests.get(search_url, params=search_params)
         data = json.loads(request.text)
+        print(data)
 
         self.next_page_token = data['nextPageToken']
         print(self.next_page_token)
@@ -68,14 +69,14 @@ class YoutubeVideoData:
             "title" : item["snippet"]["title"],
             "description" : item["snippet"]["description"],
             "view_count" : item["statistics"]["viewCount"],
-            "subscriber_count" : item["statistics"]["subscriberCount"], #TODO: how to handle if no subscribers are returned
+            "subscriber_count" : item.get("statistics",{}).get("subscriberCount",0), #TODO: how to handle if no subscribers are returned
             "video_count" : item["statistics"]["videoCount"],
             "published_date" : item["snippet"]["publishedAt"],
             "url" : "https://www.youtube.com/channel/" + item["id"]
             }
             channel_list.append(channel_dict)
 
-        filtered_channels = filter_youtube_channels(channel_list, self.min_subscriber_count, self.max_subscriber_count)
+        filtered_channels = filter_by_subs(channel_list, self.min_subscriber_count, self.max_subscriber_count)
 
 
         return filtered_channels
