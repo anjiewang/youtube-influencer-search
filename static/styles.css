@@ -1,0 +1,17 @@
+#add.btn {
+    background-color: green; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    width: fit-content;
+  }
+  
+  /* Darker background on mouse-over */
+
+
+#results-table-div {
+    margin : 20px;
+    padding : 20px;
+}
