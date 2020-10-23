@@ -13,6 +13,9 @@
     crossorigin="anonymous"></script>
     <scrip src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <div class="container">
@@ -50,25 +53,37 @@
 </div>
 <br>
 <br>
-<div id="results"></div>
+<div id="results-table-div">
 
 <h3>Results</h3>
 
-<div class="table-responsive">
-
-    <table class="table table-bordered" id="results-table">
-    <tr>
-        <td>ID</td>
+    <table class="table table-bordered table-striped" id="results-table">
+    <thead>
+        <tr>
         <td>Title</td>
         <td>Description</td>
         <td>Video Count</td>
         <td>View Count</td>
         <td>Subscriber Count</td>
-        <td>Published Date</td>
         <td>URL</td>
+        <td>Actions</td>
     </tr>
-    
+    </thead>
+    <tbody>
+
+    </tbody>
     </table>
+
+<nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" id="next-page">Next</a>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <div class="row">
