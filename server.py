@@ -41,7 +41,14 @@ def youtube_video_search():
     # if max_results == "":
     #     max_results = 25
 
-    kw_search = YoutubeVideoData(API_KEY, query, order, published_after, published_before)
+    min_subscriber_count = request.form.get("min_subscriber_count")
+    if min_subscriber_count == "":
+        min_subscriber_count = 0
+    max_subscriber_count = request.form.get("max_subscriber_count")
+    if max_subscriber_count == "":
+        max_subscriber_count = 10000000000000
+
+    kw_search = YoutubeVideoData(API_KEY, query, order, published_after, published_before, min_subscriber_count, max_subscriber_count)
     channel_data = kw_search.get_youtube_data()
     
     return jsonify({"channels":channel_data})

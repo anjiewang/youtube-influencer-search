@@ -9,9 +9,11 @@ $('#search-form').on('submit', (evt) => {
       data: {
         keywords: $('#keywords').val(),
         order: $('#order').val(),
-        max_results: $('#max-results').val(),
+        // max_results: $('#max-results').val(),
         published_before: $('#published-before').val(),
-        published_after: $('#published-after').val()
+        published_after: $('#published-after').val(),
+        min_subscriber_count: $('#min-subscribers').val(),
+        max_subscriber_count: $('#max-subscribers').val()
         //can include another parameter here for the results page
       },
       success: function(response) {

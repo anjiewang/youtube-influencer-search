@@ -1,10 +1,11 @@
 import requests
 import json
+from filters import filter_youtube_channels
 
 class YoutubeVideoData:
 
 
-    def __init__(self, api_key, query, order, published_after, published_before):
+    def __init__(self, api_key, query, order, published_after, published_before, min_subscriber_count, max_subscriber_count):
         self.api_key = api_key
         self.query = query
         self.order = order
@@ -13,6 +14,8 @@ class YoutubeVideoData:
         self.published_before = published_before
         self.previous_page_token = None
         self.next_page_token = None  #TODO: how to persist the next_page_token
+        self.min_subscriber_count = min_subscriber_count
+        self.max_subscriber_count = max_subscriber_count
 
     
     def get_youtube_data(self):
@@ -70,6 +73,9 @@ class YoutubeVideoData:
             }
             channel_list.append(channel_dict)
 
+        filtered_channels = filter_youtube_channels(channel_list, self.min_subscriber_count, self.max_subscriber_count)
 
-        return (channel_list)
+
+        return filtered_channels
+        
 
