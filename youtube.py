@@ -4,7 +4,6 @@ from filters import filter_by_subs
 
 class YoutubeVideoData:
 
-
     def __init__(self, api_key, query, order, published_after, published_before, min_subscriber_count, max_subscriber_count):
         self.api_key = api_key
         self.query = query
@@ -33,22 +32,23 @@ class YoutubeVideoData:
             "publishedBefore" : self.published_before,
             "publishedAfter" : self.published_after,
             "maxResults" : 50,
-            "relevanceLanguage" : "EN"
+            "relevanceLanguage" : "EN",
+            "nextPageToken" : self.next_page_token
         }
+        print(search_params)
 
         request = requests.get(search_url, params=search_params)
         data = json.loads(request.text)
-        print(data)
 
         self.next_page_token = data['nextPageToken']
         print(self.next_page_token)
+
+    
 
         self.channel_ids = set() #TODO: trying to figure out how to get only unique channel_ids to add to the table
 
         for item in data["items"]:
             self.channel_ids.add(item["snippet"]["channelId"])
-        
-        print(self.channel_ids)
 
 
         channel_params = {
@@ -61,7 +61,7 @@ class YoutubeVideoData:
         request = requests.get(channel_url, params=channel_params)
         channel_data = json.loads(request.text)
     
-        channel_list = []    
+        channel_list = [] 
         
         for item in channel_data["items"]:
             channel_dict = {
@@ -72,11 +72,16 @@ class YoutubeVideoData:
             "subscriber_count" : item.get("statistics",{}).get("subscriberCount",0), #TODO: how to handle if no subscribers are returned
             "video_count" : item["statistics"]["videoCount"],
             "published_date" : item["snippet"]["publishedAt"],
-            "url" : "https://www.youtube.com/channel/" + item["id"]
+            "url" : "https://www.youtube.com/channel/" + item["id"],
             }
             channel_list.append(channel_dict)
+        
+        print(channel_dict)
 
         filtered_channels = filter_by_subs(channel_list, self.min_subscriber_count, self.max_subscriber_count)
+
+        #variable to count how close I am to 50
+        #if variable < 50 call the API again
 
 
         return filtered_channels
