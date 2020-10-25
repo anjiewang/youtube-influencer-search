@@ -35,34 +35,30 @@
         </div>
       </nav> -->
 
-    <section class="hero is-primary is-fullheight">
-
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a href="/" class="navbar-item">
-                                Home
-                            </a>
-                            <a href="/profile" class="navbar-item">
-                                Profile
-                            </a>
-                            <a href="/login" class="navbar-item">
-                                Login
-                            </a>
-                            <a href="/signup" class="navbar-item">
-                                Sign Up
-                            </a>
-                            <a href="/logout" class="navbar-item">
-                                Logout
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+      <div class="navbar-end">
+        <a href="/" class="navbar-item">
+            Home
+        </a>
+        {% if current_user.is_authenticated %}
+        <a href="/profile" class="navbar-item">
+            Profile
+        </a>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+        <a href="/login" class="navbar-item">
+            Login
+        </a>
+        <a href="/signup" class="navbar-item">
+            Sign Up
+        </a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <a href="/logout" class="navbar-item">
+            Logout
+        </a>
+        {% endif %}
+    </div>
+        
     {% block content %}
 <div class="container">
     <br>
@@ -123,8 +119,8 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label" id="list_title">Title</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <label for="recipient-name" class="col-form-label" id="title_title">Title</label>
+                <input type="text" class="form-control" id="list_title">
               </div>
             </form>
           </div>

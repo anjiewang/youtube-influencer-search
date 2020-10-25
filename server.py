@@ -63,14 +63,15 @@ def youtube_video_search():
     return jsonify({"channels":channel_data})
 
 @app.route('/api/add_list', methods=["POST"])
+@login_required
 def create_new_list():
     
     list_title = request.form.get("list_title")
-    user_id = request.form.get("user_id") #TODO: change this to email!
+    user_id = current_user.user_id 
 
     new_list = crud.create_list(user_id, list_title)
 
-    return new_list
+    return list_title
 
 @app.route('/login')
 def show_login():
@@ -117,10 +118,12 @@ def signup():
     return render_template('profile.html')
 
 @app.route('/profile')
+@login_required
 def profile():
     return render_template('profile.html', name=current_user.email)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect('/')
@@ -129,7 +132,7 @@ if __name__ == "__main__":
     connect_to_db(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = '/api/login'
+    login_manager.login_view = '/login'
     login_manager.init_app(app)
 
     from model import User
