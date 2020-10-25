@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect, flash
 import requests
 import json
 from youtube import YoutubeVideoData
@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 
-# app.config['SECRET_KEY'] = 'secret-key-goes-here'
+app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
 API_KEY = "AIzaSyB7gBd3yJ6to16PESYfMIcgbf4eP2l60OI"
 
@@ -75,11 +75,11 @@ def create_new_list():
 def login():
     return render_template('login.html')
 
-@app.route('/show_signup')
+@app.route('/signup')
 def show_signup():
     return render_template('signup.html')
 
-@app.route('/signup', methods=['POST'])
+@app.route('/api/signup', methods=['POST'])
 def signup():
 
     email = request.form.get('email')
@@ -87,8 +87,9 @@ def signup():
 
     user = crud.get_user_by_email(email)
 
-    if user:
-        return render_template('login.html')
+    if user: # if a user is found, we want to redirect back to signup page so user can try again
+        flash('Email address already exists')
+        return redirect('/signup')
 
     crud.create_user(email, generate_password_hash(password, method='sha256'))
 
