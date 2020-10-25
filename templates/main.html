@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +12,15 @@
     src="http://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-    <scrip src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/styles.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
+    {% block content %}
 <div class="container">
     <br>
     <h1>Youtube Influencer Search</h1>
@@ -62,20 +65,48 @@
 <br>
 <br>
 <div id="results-table-div">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create New List</button>
 
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="new-list-title">Create a New List</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label" id="list_title">Title</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save_list">Save List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
 <h3>Results</h3>
 
     <table class="table table-bordered table-striped" id="results-table">
     <thead>
         <tr>
-        <td id="title">Title</td>
-        <td id="description">Description</td>
-        <td id="videocount">Video Count</td>
-        <td id="viewcount">View Count</td>
-        <td id="subcount">Subscriber Count</td>
-        <td id="email">Email</td>
-        <td id="url">URL</td>
-        <td id="actions">Actions</td>
+        <th id="title">Title</td>
+        <th id="description">Description</td>
+        <th id="videocount">Video Count</td>
+        <th id="viewcount">View Count</td>
+        <th id="subcount">Subscriber Count</td>
+        <th id="email">Email</td>
+        <th id="url">URL</td>
+        <th id="actions">Actions</td>
     </tr>
     </thead>
     <tbody>
@@ -101,7 +132,8 @@
         </div>
     </div>
 </div>
-
+{% endblock %}
 <script src="/static/channels.js"></script>
+
 </body>
 </html>

@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import requests
 import json
 from youtube import YoutubeVideoData
 from datetime import date
 import sys
+import crud
+from model import connect_to_db
+from werkzeug.security import generate_password_hash
 
 
 app = Flask(__name__)
+
+# app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
 API_KEY = "AIzaSyB7gBd3yJ6to16PESYfMIcgbf4eP2l60OI"
 
@@ -56,7 +61,44 @@ def youtube_video_search():
 
     return jsonify({"channels":channel_data})
 
+@app.route('/api/add_list', methods=["POST"])
+def create_new_list():
+    
+    list_title = request.form.get("list_title")
+    user_id = request.form.get("user_id") #TODO: change this to email!
+
+    new_list = crud.create_list(user_id, list_title)
+
+    return new_list
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/show_signup')
+def show_signup():
+    return render_template('signup.html')
+
+@app.route('/signup', methods=['POST'])
+def signup():
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        return render_template('login.html')
+
+    crud.create_user(email, generate_password_hash(password, method='sha256'))
+
+    return render_template('profile.html')
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 if __name__ == "__main__":
+    connect_to_db(app)
     app.run(debug=True, host='0.0.0.0')
 
