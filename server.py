@@ -6,7 +6,7 @@ from datetime import date
 import sys
 import crud
 from model import connect_to_db
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -72,8 +72,26 @@ def create_new_list():
     return new_list
 
 @app.route('/login')
-def login():
+def show_login():
     return render_template('login.html')
+
+@app.route('/api/login', methods=['POST'])
+def login_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+
+    user = crud.get_user_by_email(email)
+
+    # check if the user actually exists
+    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    if not user or not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect('/login') # if the user doesn't exist or password is wrong, reload the page
+
+    # if the above check passes, then we know the user has the right credentials
+    return redirect('/profile')
+
 
 @app.route('/signup')
 def show_signup():
