@@ -7,6 +7,7 @@ import sys
 import crud
 from model import connect_to_db
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 
 app = Flask(__name__)
@@ -90,6 +91,8 @@ def login_post():
         return redirect('/login') # if the user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
+    login_user(user, remember=remember)
+
     return redirect('/profile')
 
 
@@ -115,9 +118,26 @@ def signup():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', name=current_user.email)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
 
 if __name__ == "__main__":
     connect_to_db(app)
+
+    login_manager = LoginManager()
+    login_manager.login_view = '/api/login'
+    login_manager.init_app(app)
+
+    from model import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        # since the user_id is just the primary key of our user table, use it in the query for the user
+        return User.query.get(int(user_id))
+
     app.run(debug=True, host='0.0.0.0')
 
