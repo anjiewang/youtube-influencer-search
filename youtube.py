@@ -4,15 +4,13 @@ from filters import filter_by_subs
 
 class YoutubeVideoData:
 
-    def __init__(self, api_key, query, order, published_after, published_before, min_subscriber_count, max_subscriber_count):
+    def __init__(self, api_key, query, order, min_subscriber_count, max_subscriber_count, next_page_token):
         self.api_key = api_key
         self.query = query
         self.order = order
         self.channel_ids = set()
-        self.published_after = published_after
-        self.published_before = published_before
         self.previous_page_token = None
-        self.next_page_token = None  #TODO: how to persist the next_page_token
+        self.next_page_token = next_page_token
         self.min_subscriber_count = min_subscriber_count
         self.max_subscriber_count = max_subscriber_count
 
@@ -29,11 +27,9 @@ class YoutubeVideoData:
             "q" : self.query,
             "key" : self.api_key,
             "order" : self.order,
-            "publishedBefore" : self.published_before,
-            "publishedAfter" : self.published_after,
-            "maxResults" : 50,
+            "maxResults" : 5,
             "relevanceLanguage" : "EN",
-            "nextPageToken" : self.next_page_token
+            "pageToken" : self.next_page_token
         }
         print(search_params)
 
@@ -46,10 +42,12 @@ class YoutubeVideoData:
     
 
         self.channel_ids = set() #TODO: trying to figure out how to get only unique channel_ids to add to the table
+        
 
         for item in data["items"]:
             self.channel_ids.add(item["snippet"]["channelId"])
 
+        print(self.channel_ids)
 
         channel_params = {
             "part" : "snippet,statistics,contentOwnerDetails,topicDetails",
@@ -61,7 +59,7 @@ class YoutubeVideoData:
         request = requests.get(channel_url, params=channel_params)
         channel_data = json.loads(request.text)
     
-        channel_list = [] 
+        channel_list = []
         
         for item in channel_data["items"]:
             channel_dict = {
@@ -76,7 +74,8 @@ class YoutubeVideoData:
             }
             channel_list.append(channel_dict)
         
-        print(channel_dict)
+
+        tokens = {"nextPageToken" : data["nextPageToken"]}
 
         filtered_channels = filter_by_subs(channel_list, self.min_subscriber_count, self.max_subscriber_count)
 
@@ -84,6 +83,6 @@ class YoutubeVideoData:
         #if variable < 50 call the API again
 
 
-        return filtered_channels
+        return filtered_channels, tokens
         
 

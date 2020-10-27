@@ -87,7 +87,7 @@
             <h3>Max Subscribers</h3> <input type="text" class="form-control" id="max-subscribers" name="max_subscribers">
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="published-before"><h3>Published Before</h3></label>
               <input class="form-control" type="date" value="YYYY-MM-DD" id="published-before" name="published_before">
             </div>
@@ -95,7 +95,7 @@
         <div class="form-group">
             <label for="published-after"><h3>Published After</h3></label>
                 <input class="form-control" type="date" value="YYYY-MM-DD" id="published-after" name="published_after">
-            </div>
+            </div> -->
 
         <div class="form-group">
             <input type="submit" class="btn btn-danger" value="Submit">
@@ -117,7 +117,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="list-form">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label" id="title_title">Title</label>
                 <input type="text" class="form-control" id="list_title">
@@ -125,7 +125,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
             <button type="button" class="btn btn-primary" id="save_list">Save List</button>
           </div>
         </div>
@@ -133,6 +133,32 @@
     </div>
     <br>
     <br>
+                                            
+    <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select a List
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">Action</a>
+          <a class="dropdown-item">Another action</a>
+          <a class="dropdown-item">Something else here</a>
+        </div>
+      </div> -->
+
+        <div class="btn-group">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdown-list" href="#">
+              Select a List <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu btn" id="dropdown-menu">
+              <li><a>Choice1</a></li>
+              <li><a>Choice2</a></li>
+              <li><a>Choice3</a></li>
+            </ul>
+          </div>
+      
+<br>
+<br>
+
 <h3>Results</h3>
 
     <table class="table table-bordered table-striped" id="results-table">
