@@ -35,7 +35,38 @@
         </div>
       </nav> -->
 
-      <div class="navbar-end">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile">Profile</a>
+            {% endif %}
+            </li>
+            {% if not current_user.is_authenticated %}
+            <li class="nav-item active">
+                <a class="nav-link" href="/login">Log In</a>
+              </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      <!-- <div class="navbar-end">
         <a href="/" class="navbar-item">
             Home
         </a>
@@ -57,7 +88,7 @@
             Logout
         </a>
         {% endif %}
-    </div>
+    </div> -->
         
     {% block content %}
 <div class="container">
