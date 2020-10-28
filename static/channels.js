@@ -5,8 +5,6 @@
 $('#search-form').on('submit', (evt) => {
     evt.preventDefault();
 
-//make this into a function and call it from both event handlers
-//set a variable = loading and inside success function set it to false; if true, do nothing. otherwise make the ajax request
     $.ajax({
       url: '/api/search',
       type: 'POST', //make this a POST request
@@ -98,18 +96,8 @@ $('#save_list').on('click', (evt) => {
       $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
       $.each(response, function (i, item) {
           console.log(response)
-          // trHTML += `<tr><td> ${channel.title} </td>
-          // <td> ${channel.description} </td>
-          // <td> ${channel.video_count} </td>
-          // <td> ${channel.view_count} </td>
-          // <td> ${channel.subscriber_count} </td>
-          // <td> ${(channel.email).join("\n")} </td>
-          // <td> <a target='_blank' href=${channel.url}>Link</a></td>
-          // <td> <button type="button" class="btn btn-primary btn-sm btn-success" id="button-add">Add</button><br>
-          // </tr>`;
         
       });
-      $('#results-table').append(trHTML);
   }
 });
 });
@@ -145,15 +133,7 @@ $("#add-button").click(function(){
       $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
       $.each(response, function (i, item) {
           console.log(response)
-          // trHTML += `<tr><td> ${channel.title} </td>
-          // <td> ${channel.description} </td>
-          // <td> ${channel.video_count} </td>
-          // <td> ${channel.view_count} </td>
-          // <td> ${channel.subscriber_count} </td>
-          // <td> ${(channel.email).join("\n")} </td>
-          // <td> <a target='_blank' href=${channel.url}>Link</a></td>
-          // <td> <button type="button" class="btn btn-primary btn-sm btn-success" id="button-add">Add</button><br>
-          // </tr>`;
+;
         
       });
       $('#results-table').append(trHTML);

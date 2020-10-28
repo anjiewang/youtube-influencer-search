@@ -16,6 +16,9 @@ app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
 API_KEY = "AIzaSyB7gBd3yJ6to16PESYfMIcgbf4eP2l60OI"
 
+kw_search = YoutubeVideoData(API_KEY)
+
+
 @app.route('/')
 def index():
     return render_template("main.html")
@@ -58,11 +61,11 @@ def youtube_video_search():
     if max_subscriber_count == "":
         max_subscriber_count = sys.maxsize
 
-    next_page_token = request.form.get("next_page_token")
+    # next_page_token = request.form.get("next_page_token")
 
 
-    kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)
-    channel_data, tokens = kw_search.get_youtube_data()
+    # kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)
+    channel_data, tokens = kw_search.get_youtube_data(query, order, min_subscriber_count, max_subscriber_count)
 
     return jsonify({"channels":channel_data, "tokens": tokens})
     
