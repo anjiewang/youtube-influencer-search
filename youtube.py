@@ -59,7 +59,7 @@ class YoutubeVideoData:
         print(channel_params)
 
         request = requests.get(channel_url, params=channel_params)
-        channel_data = json.loads(request.text)
+        channel_data = json.loads(request.text) 
 
         for item in second_set:
             self.channel_ids.add(item)

@@ -5,6 +5,7 @@ from youtube import YoutubeVideoData
 from datetime import date
 import sys
 import crud
+import re
 from model import connect_to_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -21,10 +22,14 @@ kw_search = YoutubeVideoData(API_KEY)
 
 @app.route('/')
 def index():
-    return render_template("main.html")
+
+    lists = crud.get_list_by_user(current_user.user_id)
+
+    return render_template('main.html', lists=lists)
 
 
 @app.route('/api/search', methods=["POST"])
+
 
 def youtube_video_search():
 
@@ -77,7 +82,7 @@ def create_new_list():
     list_title = request.form.get("list_title")
     user_id = current_user.user_id 
 
-    new_list = crud.create_list(user_id, list_title)
+    crud.create_list(user_id, list_title)
 
     return list_title
 
@@ -87,6 +92,24 @@ def create_new_list():
 #     # list_id = #need to get the list ID of the list that is selected in the dropdown
     
 #     # add_influencer():
+
+@app.route('/api/add_influencer', methods=["POST"])
+def add_influencer():
+    title = request.form.get("list_title")
+    # row_data = request.form.getlist("row_data[]")
+    
+    channel_title = request.form.get("row_data[title]")
+    channel_desc = request.form.get("row_data[description]")
+    video_count = request.form.get("row_data[video_count]")
+    view_count = request.form.get("row_data[view_count]")
+    subscriber_count = request.form.get("row_data[sub_count]")
+    email = request.form.get("row_data[email]")
+    URL = request.form.get("row_data[link]")
+
+    crud.add_influencer(current_user.user_id, title, channel_title, channel_desc, subscriber_count, video_count, view_count, email, URL)
+
+    return jsonify(success=True)
+
 
 
 @app.route('/login')

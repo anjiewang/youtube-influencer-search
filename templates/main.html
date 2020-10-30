@@ -176,14 +176,15 @@
         </div>
       </div> -->
 
+
         <div class="btn-group">
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdown-list" href="#">
               Select a List <span class="caret"></span>
             </a>
             <ul class="dropdown-menu btn" id="dropdown-menu">
-              <li><a>Choice1</a></li>
-              <li><a>Choice2</a></li>
-              <li><a>Choice3</a></li>
+            {% for item in lists %}
+              <li><a>{{ item.title }}</a></li>
+            {% endfor %}
             </ul>
           </div>
       

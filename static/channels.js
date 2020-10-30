@@ -92,12 +92,14 @@ $('#save_list').on('click', (evt) => {
       list_title: $('#list_title').val(),
     },
     success: function(response) {
-      $('.modal-body').html("Successfully added");
-      $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
-      $.each(response, function (i, item) {
-          console.log(response)
+      alert('Successfully added')
+      location.reload(true)
+      // $('.modal-body').html("Successfully added");
+      // $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
+  
+      // $.each(response, function (i, item) {
+      //     console.log(response)
         
-      });
   }
 });
 });
@@ -120,23 +122,60 @@ $(".dropdown-menu li a").click(function(){
 
 //Add Influencer to List when Add Button is Clicked
 
-$("#add-button").click(function(){
+// $("#add-button").click(function(){
   
-  $.ajax({
-    url: '/api/add_list',
-    type: 'POST', //make this a POST request
-    data: {
-      list_title: $('#list_title').val(),
-    },
-    success: function(response) {
-      $('.modal-body').html("Successfully added");
-      $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
-      $.each(response, function (i, item) {
-          console.log(response)
-;
+//   $.ajax({
+//     url: '/api/add_influencer',
+//     type: 'POST', //make this a POST request
+//     data: {
+//       list_title: $('#list_title').val(),
+//       $(this).closest("tr")
+//     },
+//     success: function(response) {
+//       $('.modal-body').html("Successfully added");
+//       $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
+//       $.each(response, function (i, item) {
+//           console.log(response)
+// ;
         
-      });
-      $('#results-table').append(trHTML);
+//       });
+//       $('#results-table').append(trHTML);
+//   }
+// });
+// });
+
+$(document).on("click", "#button-add", function(){
+  if ($('#dropdown-list').text().trim() === "Select a List") {
+    alert("Please select a list");
+  
+  } else {
+  let row = $(this).closest("tr");
+  let value = row.find("td");
+  let link = row.find("td:nth-child(7)").children().attr('href')
+  let row_data_obj = {}
+  let row_data_obj_keys = ["title", "description", "video_count", "view_count", "sub_count", "email"]
+
+
+  for (key of row_data_obj_keys) {
+    row_data_obj[key] = row.find(`td:nth-child(${row_data_obj_keys.indexOf(key) + 1})`).text().trim();
   }
-});
-});
+
+  row_data_obj["link"] = link
+
+  
+
+  $.ajax({
+        url: '/api/add_influencer',
+        type: 'POST', //make this a POST request
+        data: {
+          list_title: $('#dropdown-list').text().trim(),
+          row_data: row_data_obj
+        },
+        success: function(response) {
+          let column = row.find("td:nth-child(7)")
+          console.log(add_column);
+            
+          }
+    });
+  }});
+  
