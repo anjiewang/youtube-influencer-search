@@ -23,13 +23,43 @@ kw_search = YoutubeVideoData(API_KEY)
 @app.route('/')
 def index():
 
-    lists = crud.get_list_by_user(current_user.user_id)
+    if current_user.is_authenticated:
+        lists = crud.get_list_by_user(current_user.user_id)
+        return render_template('main.html', lists=lists)
 
-    return render_template('main.html', lists=lists)
+    return render_template('main.html')
+
+@app.route('/profile')
+def load_lists_page():
+    
+    lists = crud.get_list_by_user(current_user.user_id)
+    return render_template('profile.html', lists=lists)
+
+
+@app.route('/api/load_lists', methods=["POST"])
+def load_lists():
+    list_title = request.form.get("list_title")
+    influencers = crud.get_influencers_by_title(current_user.user_id, list_title)
+
+    channel_list = []
+    for influencer in influencers:
+            channel_dict = {
+            "id" : influencer.influencer_id,
+            "title" : influencer.channel_title,
+            "description" : influencer.channel_desc,
+            "view_count" : influencer.view_count,
+            "subscriber_count" : influencer.subscriber_count,
+            "video_count" : influencer.video_count,
+            "email" : influencer.email,
+            "url" : influencer.URL,
+            }
+            channel_list.append(channel_dict)
+    
+
+    return jsonify({"channels":channel_list})
 
 
 @app.route('/api/search', methods=["POST"])
-
 
 def youtube_video_search():
 
@@ -110,6 +140,15 @@ def add_influencer():
 
     return jsonify(success=True)
 
+@app.route('/api/remove_influencer', methods=["POST"])
+def remove_influencer():
+    list_title = request.form.get("list_title")
+    channel_title = request.form.get("channel_title")
+
+    crud.remove_influencer(current_user.user_id, list_title, channel_title)
+
+    return jsonify(success=True)
+
 
 
 @app.route('/login')
@@ -154,7 +193,7 @@ def signup():
 
     crud.create_user(email, generate_password_hash(password, method='sha256'))
 
-    return render_template('profile.html')
+    return render_template('profile.html', name=current_user.email)
 
 @app.route('/profile')
 @login_required

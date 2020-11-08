@@ -46,7 +46,7 @@
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item active">
-              <a class="nav-link" href="/profile">Profile</a>
+              <a class="nav-link" href="/profile">My Dashboard</a>
             {% endif %}
             </li>
             {% if not current_user.is_authenticated %}
@@ -213,9 +213,6 @@
 
 <nav aria-label="...">
     <ul class="pagination">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
       <li class="page-item">
         <a class="page-link" href="#" id="next-page">Next</a>
       </li>

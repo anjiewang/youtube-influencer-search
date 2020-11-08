@@ -172,10 +172,88 @@ $(document).on("click", "#button-add", function(){
           row_data: row_data_obj
         },
         success: function(response) {
-          let column = row.find("td:nth-child(7)")
-          console.log(add_column);
+          row.find("td:nth-child(8)").html(`<button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove">Remove</button>`);
             
           }
     });
   }});
+
+
+  //Remove influencer from a list 
+
+  $(document).on("click", "#button-remove", function(){
+    if ($('#dropdown-list').text().trim() === "Select a List") {
+      alert("Please select a list");
+    
+    } else {
+    let row = $(this).closest("tr");
+    let title = row.find("td:nth-child(1)").text().trim();
+    
+  
+    $.ajax({
+          url: '/api/remove_influencer',
+          type: 'POST', //make this a POST request
+          data: {
+            list_title: $('#dropdown-list').text().trim(),
+            channel_title: title
+          },
+          success: function(response) {
+            row.find("td:nth-child(8)").html(`<button type="button" class="btn btn-primary btn-sm btn-success" id="button-add">Add</button>`);
+              
+            }
+      });
+    }});
+
+//Update Profile list dropdown with title & request influencer data
+$("#menu-profile li a").click(function(){
+  
+  $("#profile-list:first-child").html($(this).text()+' <span class="caret"></span>');
+
+  $.ajax({
+    url: '/api/load_lists',
+    type: 'POST', //make this a POST request
+    data: {
+      list_title: $('#profile-list').text().trim(),
+    },
+    success: function(response) {
+      let trHTML = '';
+      // $.each(response, function (i, item) {
+        for (channel of response.channels) {
+          trHTML += `<tr><td> ${channel.title} </td>
+          <td> ${channel.description} </td>
+          <td> ${channel.video_count} </td>
+          <td> ${channel.view_count} </td>
+          <td> ${channel.subscriber_count} </td>
+          <td> ${(channel.email)} </td>
+          <td> <a target='_blank' href=${channel.url}>Link</a></td>
+          <td> <button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove-profile">Remove</button><br>
+          </tr>`;
+        }
+      // });
+      $('#profile-table').append(trHTML);
+        
+      }
+    });
+});
+
+// Load all users lists
+
+// $(document).on("click", "#load-lists", function(){
+  
+//   $.ajax({
+//     url: '/api/load_lists',
+//     type: 'POST', //make this a POST request
+//     data: {
+//     },
+//     success: function(response) {
+//       let tableHTML = ""
+//       for (lst of response) {
+//         tableHTML += `<tr><td> ${lst.list_id} </td>
+//             <td> ${lst.list_title} </td>
+//             <td> <button type="button" class="btn btn-primary btn-sm btn-success" id="remove-list">Remove</button><br>
+//             </tr>`
+//       }
+//       $('#page-content-wrapper').append(tableHTML)
+//       }
+  
   
