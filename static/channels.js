@@ -4,6 +4,7 @@
 
 $('#search-form').on('submit', (evt) => {
     evt.preventDefault();
+    $("#results-table tbody tr").remove();
 
     $.ajax({
       url: '/api/search',
@@ -208,6 +209,7 @@ $(document).on("click", "#button-add", function(){
 $("#menu-profile li a").click(function(){
   
   $("#profile-list:first-child").html($(this).text()+' <span class="caret"></span>');
+  $("#profile-table tbody tr").remove(); 
 
   $.ajax({
     url: '/api/load_lists',
