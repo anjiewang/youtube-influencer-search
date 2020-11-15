@@ -6,10 +6,11 @@ $('#search-form').on('submit', (evt) => {
     evt.preventDefault();
     $("#results-table tbody tr").remove();
 
-    if ($('#keyword-video').text().trim() === "Select") {
-      alert("Please select a video or keyword search");
-    }
-
+    // if ($('#keyword-video').text().trim() === "Select") {
+    //   evt.preventDefault();
+    //   alert("Please select a video or keyword search");
+    // }
+    
     $.ajax({
       url: '/api/search',
       type: 'POST', //make this a POST request
@@ -17,7 +18,7 @@ $('#search-form').on('submit', (evt) => {
         keywords: $('#keywords').val(),
         // order: $('#order').val(),
         // max_results: $('#max-results').val(),
-        type: $('#keyword-video').val(),
+        type: $('#keyword-video').text().trim(),
         min_subscriber_count: $('#min-subscribers').val(),
         max_subscriber_count: $('#max-subscribers').val()
         //can include another parameter here for the results page

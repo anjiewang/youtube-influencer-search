@@ -14,10 +14,11 @@ class YoutubeVideoData:
         self.max_subscriber_count = max_subscriber_count
         #store channels 
 
+
+
     
-    def get_youtube_data(self, query, order, min_subscriber_count, max_subscriber_count):
+    def get_youtube_data(self, query, min_subscriber_count, max_subscriber_count, search_type):
         self.query = query
-        self.order = order
         self.min_subscriber_count = min_subscriber_count
         self.max_subscriber_count = max_subscriber_count
 
@@ -31,16 +32,27 @@ class YoutubeVideoData:
         while count < 10:
 
             print(f'count is {count}')
-            search_params = {
-                "part" : "snippet",
-                "type" : "video",
-                "q" : self.query,
-                "key" : self.api_key,
-                "order" :"relevance",
-                "maxResults" : 10,
-                "relevanceLanguage" : "EN",
-                "pageToken" : self.next_page_token
-            }
+            if search_type == "Video URL":
+                search_params = {
+                    "part" : "snippet",
+                    "type" : "video",
+                    "relatedToVideoId" : self.query,
+                    "key" : self.api_key,
+                    "maxResults" : 10,
+                    "relevanceLanguage" : "EN",
+                    "pageToken" : self.next_page_token
+                }
+            else:
+                search_params = {
+                    "part" : "snippet",
+                    "type" : "video",
+                    "q" : self.query,
+                    "key" : self.api_key,
+                    "order" :"relevance",
+                    "maxResults" : 10,
+                    "relevanceLanguage" : "EN",
+                    "pageToken" : self.next_page_token
+                }
 
             request = requests.get(search_url, params=search_params)
             data = json.loads(request.text)
@@ -89,7 +101,6 @@ class YoutubeVideoData:
 
         #variable to count how close I am to 50
         #if variable < 50 call the API again
-
 
         return filtered_channels, tokens
         

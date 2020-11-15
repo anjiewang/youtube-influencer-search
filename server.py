@@ -63,30 +63,12 @@ def load_lists():
 
 def youtube_video_search():
 
-    query = request.form.get("keywords")
-
-    # published_after = request.form.get("published_after") + "T00:00:00-08:00"
-    # if published_after == "T00:00:00-08:00":
-    #     published_after = "2000-01-01T00:00:00-08:00"
-
-    # published_before = request.form.get("published_before") + "T00:00:00-08:00"
-    # if published_before == "T00:00:00-08:00":
-    #     published_before = str(date.today()) + "T00:00:00-08:00"
-    # print(published_before)
-    
-    # order = request.form.get("order")
-    # if order == "Relevancy":
-    #     order = "relevance"
-    # elif order == "Most Recently Published":
-    #     order = "date"
-    # elif order == "Rating (Highest to Lowest)":
-    #     order = "rating"
-    # elif order == "View Count (Highest to Lowest)":
-    #     order = "viewCount"
-    
-    # max_results = request.args.get("max_results")
-    # if max_results == "":
-    #     max_results = 25
+    query_string = request.form.get("keywords")
+    if "youtube.com" in query_string:
+        query = re.search('v=(.*)&', query_string)
+        if query:
+            query = query.group(1)
+    print(f'the query is {query}')
 
     min_subscriber_count = request.form.get("min_subscriber_count")
     if min_subscriber_count == "":
@@ -96,11 +78,13 @@ def youtube_video_search():
     if max_subscriber_count == "":
         max_subscriber_count = sys.maxsize
 
+    search_type = request.form.get("type")
+    print(f'HELLO the search_type is {search_type}')
     # next_page_token = request.form.get("next_page_token")
 
 
     # kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)
-    channel_data, tokens = kw_search.get_youtube_data(query, order, min_subscriber_count, max_subscriber_count)
+    channel_data, tokens = kw_search.get_youtube_data(query, min_subscriber_count, max_subscriber_count, search_type)
 
     return jsonify({"channels":channel_data, "tokens": tokens})
     
