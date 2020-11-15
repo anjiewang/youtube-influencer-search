@@ -6,14 +6,18 @@ $('#search-form').on('submit', (evt) => {
     evt.preventDefault();
     $("#results-table tbody tr").remove();
 
+    if ($('#keyword-video').text().trim() === "Select") {
+      alert("Please select a video or keyword search");
+    }
+
     $.ajax({
       url: '/api/search',
       type: 'POST', //make this a POST request
       data: {
         keywords: $('#keywords').val(),
-        order: $('#order').val(),
+        // order: $('#order').val(),
         // max_results: $('#max-results').val(),
- 
+        type: $('#keyword-video').val(),
         min_subscriber_count: $('#min-subscribers').val(),
         max_subscriber_count: $('#max-subscribers').val()
         //can include another parameter here for the results page
@@ -115,9 +119,17 @@ $("#exampleModal").on("hidden.bs.modal", function(){
 
 //Update Dropdown list with Selected List Title
 
-$(".dropdown-menu li a").click(function(){
+$("#dropdown-menu li a").click(function(){
   
   $("#dropdown-list:first-child").html($(this).text()+' <span class="caret"></span>');
+  
+});
+
+//Update Main page dropdown with Keyword or Video
+
+$("#keyword-video-dropdown li a").click(function(){
+  
+  $("#keyword-video:first-child").html($(this).text()+' <span class="caret"></span>');
   
 });
 

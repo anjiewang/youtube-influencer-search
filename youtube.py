@@ -36,7 +36,7 @@ class YoutubeVideoData:
                 "type" : "video",
                 "q" : self.query,
                 "key" : self.api_key,
-                "order" : self.order,
+                "order" :"relevance",
                 "maxResults" : 10,
                 "relevanceLanguage" : "EN",
                 "pageToken" : self.next_page_token

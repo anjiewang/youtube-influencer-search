@@ -63,7 +63,7 @@ def load_lists():
 
 def youtube_video_search():
 
-    query = request.form.get("keywords") #TODO: create a list to split keywords and loop through; can also jsonify the string 
+    query = request.form.get("keywords")
 
     # published_after = request.form.get("published_after") + "T00:00:00-08:00"
     # if published_after == "T00:00:00-08:00":
@@ -74,15 +74,15 @@ def youtube_video_search():
     #     published_before = str(date.today()) + "T00:00:00-08:00"
     # print(published_before)
     
-    order = request.form.get("order")
-    if order == "Relevancy":
-        order = "relevance"
-    elif order == "Most Recently Published":
-        order = "date"
-    elif order == "Rating (Highest to Lowest)":
-        order = "rating"
-    elif order == "View Count (Highest to Lowest)":
-        order = "viewCount"
+    # order = request.form.get("order")
+    # if order == "Relevancy":
+    #     order = "relevance"
+    # elif order == "Most Recently Published":
+    #     order = "date"
+    # elif order == "Rating (Highest to Lowest)":
+    #     order = "rating"
+    # elif order == "View Count (Highest to Lowest)":
+    #     order = "viewCount"
     
     # max_results = request.args.get("max_results")
     # if max_results == "":

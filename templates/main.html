@@ -94,13 +94,56 @@
 <div class="container">
     <br>
     <h1>Youtube Influencer Search</h1>
+    <div>Search for Youtube Influencers by Video or Keyword</div>
     <br>
     <form id="search-form">
-        <div class="form-group">
-            <h3>Keywords</h3> <input type="text" class="form-control" id="keywords" name="search" required>
+        <div class="form-row" style="margin-top:15px">
+            <!-- <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Keyword
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item">Video ID</a>
         </div>
+    </div> -->
+
+    <div class="btn-group">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="keyword-video" href="#">
+          Select <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu btn" id="keyword-video-dropdown">
+          <li id="option1"><a>Video ID</a></li>
+          <li id="option1"><a>Keyword</a></li>
+        </ul>
+      </div>
+
+
+            <div class="col-8"><input type="text" class="form-control" id="keywords" name="search" placeholder="Enter new search" required>
+            </div>
+            <input type="submit" class="btn btn-danger" value="Submit"> 
+            </div>
+
 
         <div class="form-group">
+        <div style="margin-top:25px"><p>
+            <a data-toggle="collapse" href="#filter-menu" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Show Filters
+            </a>
+          </p>
+          <div class="collapse" id="filter-menu">
+            <div class="form-row" style="margin-top:15px">
+                <div class="col-5">
+                    <h5>Title Does Not Contain</h5><textarea class="form-control" id="title-contains" name="title-contains"></textarea>
+              </div>
+                    
+              <div class="col-5">
+                  <h5>Description Does Not Contain</h5> <textarea class="form-control" id="desc-contains" name="desc-contains"></textarea>
+              </div>
+            <!-- <div class="col-6">
+            <h4>Related to Video</h4><input type="text" class="form-control" id="keywords" name="search" required>
+        </div> -->
+    </div>
+        <!-- <div class="form-group">
             <label for="order"><h3>Order</h3></label>
             <select class="form-control" id="order" name="order">
               <option>Relevancy</option>
@@ -108,16 +151,17 @@
               <option>Rating (Highest to Lowest)</option>
               <option>View Count (Highest to Lowest)</option>
             </select>
-          </div>
-
-        <div class="form-group">
-            <h3>Min. Subscribers</h3> <input type="text" class="form-control" id="min-subscribers" name="min_subscribers">
+          </div> -->
+<div class="form-row" style="margin-top:15px">
+          <div class="col-5">
+            <h5>Min. Subscribers</h5> <input type="text" class="form-control" id="min-subscribers" name="min_subscribers">
         </div>
               
-        <div class="form-group">
-            <h3>Max Subscribers</h3> <input type="text" class="form-control" id="max-subscribers" name="max_subscribers">
+        <div class="col-5">
+            <h5>Max Subscribers</h5> <input type="text" class="form-control" id="max-subscribers" name="max_subscribers">
         </div>
-
+    </div>
+</div>
         <!-- <div class="form-group">
             <label for="published-before"><h3>Published Before</h3></label>
               <input class="form-control" type="date" value="YYYY-MM-DD" id="published-before" name="published_before">
@@ -127,10 +171,8 @@
             <label for="published-after"><h3>Published After</h3></label>
                 <input class="form-control" type="date" value="YYYY-MM-DD" id="published-after" name="published_after">
             </div> -->
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-danger" value="Submit">
-        </div>        
+        </div>      
+</div>
 </div>
 <br>
 <br>
