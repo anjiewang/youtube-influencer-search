@@ -63,12 +63,11 @@ def load_lists():
 
 def youtube_video_search():
 
-    query_string = request.form.get("keywords")
-    if "youtube.com" in query_string:
-        query = re.search('v=(.*)&', query_string)
-        if query:
-            query = query.group(1)
-    print(f'the query is {query}')
+    query = request.form.get("keywords")
+    if "youtube.com" in query:
+        query_string = re.search('v=(.*)&', query)
+        if query_string:
+            query = query_string.group(1)
 
     min_subscriber_count = request.form.get("min_subscriber_count")
     if min_subscriber_count == "":
@@ -82,9 +81,12 @@ def youtube_video_search():
     print(f'HELLO the search_type is {search_type}')
     # next_page_token = request.form.get("next_page_token")
 
+    title_keywords = request.form.get("title_keywords")
+    desc_keywords = request.form.get('desc_keywords')
+
 
     # kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)
-    channel_data, tokens = kw_search.get_youtube_data(query, min_subscriber_count, max_subscriber_count, search_type)
+    channel_data, tokens = kw_search.get_youtube_data(query, min_subscriber_count, max_subscriber_count, search_type, title_keywords, desc_keywords)
 
     return jsonify({"channels":channel_data, "tokens": tokens})
     

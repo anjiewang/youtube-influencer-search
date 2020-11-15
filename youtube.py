@@ -4,7 +4,7 @@ from filters import filter_by_subs
 
 class YoutubeVideoData:
 
-    def __init__(self, api_key, query = None, order = None, min_subscriber_count = None, max_subscriber_count = None, next_page_token = None):
+    def __init__(self, api_key, query = None, order = None, min_subscriber_count = None, max_subscriber_count = None, next_page_token = None, title_keywords = None, desc_keywords = None):
         self.api_key = api_key
         self.query = query
         self.order = order
@@ -12,15 +12,51 @@ class YoutubeVideoData:
         self.next_page_token = next_page_token
         self.min_subscriber_count = min_subscriber_count
         self.max_subscriber_count = max_subscriber_count
+        self.title_keywords = title_keywords
+        self.desc_keywords = desc_keywords
         #store channels 
 
+    
+    # def check_channels(self, channel_list):
+    #     for channel in channel_list:
+    #         if 
+    #     return
 
+    # def filter_by_subs(self, channel):    
+
+    #     if int(self.min_subscriber_count) < int(channel["subscriber_count"]) < int(self.max_subscriber_count):
+    #         return True
+
+    # def check_title(self, channel):
+    #     for keyword in self.title_keywords:
+    #         if keyword not in channel["title"]:
+    #             return True
+
+    # def check_desc(self, channel):
+    #     for keyword in self.desc_keywords:
+    #         if keyword not in channel["description"]:
+    #             return True
+
+
+        
+
+
+    # def get_emails(self, filtered_channels):
+    #     for channel in filtered_channels:
+    #     emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", channel["description"])
+    #     channel["email"] = emails
+
+    #     channel_with_emails = add_emails(filtered_channels)
+
+    # return channel_with_emails
 
     
-    def get_youtube_data(self, query, min_subscriber_count, max_subscriber_count, search_type):
+    def get_youtube_data(self, query, min_subscriber_count, max_subscriber_count, search_type, title_keywords, desc_keywords):
         self.query = query
         self.min_subscriber_count = min_subscriber_count
         self.max_subscriber_count = max_subscriber_count
+        self.title_keywords = title_keywords
+        self.desc_keywords = desc_keywords
 
         search_url = "https://www.googleapis.com/youtube/v3/search"
         channel_url = "https://www.googleapis.com/youtube/v3/channels"
