@@ -81,8 +81,10 @@ def youtube_video_search():
     print(f'HELLO the search_type is {search_type}')
     # next_page_token = request.form.get("next_page_token")
 
-    title_keywords = request.form.get("title_keywords")
+    title_keywords = request.form.get("title_keywords").split("\n")
+    print(title_keywords)
     desc_keywords = request.form.get('desc_keywords')
+    print(desc_keywords)
 
 
     # kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)

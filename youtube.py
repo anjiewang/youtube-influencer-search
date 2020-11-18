@@ -18,9 +18,12 @@ class YoutubeVideoData:
 
     
     # def check_channels(self, channel_list):
+    #     filtered_channels = []
     #     for channel in channel_list:
-    #         if 
-    #     return
+    #         if filter_by_subs(channel) and if check_title(channel) and if check_desc(channel):
+    #             filtered_channels.append(channel)
+
+    #     return filtered_channels
 
     # def filter_by_subs(self, channel):    
 
@@ -29,8 +32,8 @@ class YoutubeVideoData:
 
     # def check_title(self, channel):
     #     for keyword in self.title_keywords:
-    #         if keyword not in channel["title"]:
-    #             return True
+    #         if keyword.lower() not in channel["title"].lower():
+    #             return True 
 
     # def check_desc(self, channel):
     #     for keyword in self.desc_keywords:

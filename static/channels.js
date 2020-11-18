@@ -20,7 +20,9 @@ $('#search-form').on('submit', (evt) => {
         // max_results: $('#max-results').val(),
         type: $('#keyword-video').text().trim(),
         min_subscriber_count: $('#min-subscribers').val(),
-        max_subscriber_count: $('#max-subscribers').val()
+        max_subscriber_count: $('#max-subscribers').val(),
+        title_keywords: $('#title-contains').val(),
+        desc_keywords: $('#desc-contains').val()
         //can include another parameter here for the results page
       },
       success: function(response) {
@@ -218,6 +220,26 @@ $(document).on("click", "#button-add", function(){
       });
     }});
 
+//Remove influencer from list on profile
+
+    $(document).on("click", "#button-remove-profile", function(){
+      let row = $(this).closest("tr");
+      let title = row.find("td:nth-child(1)").text().trim();
+
+      $.ajax({
+        url: '/api/remove_influencer',
+        type: 'POST', //make this a POST request
+        data: {
+          list_title: $('#profile-list').text().trim(),
+          channel_title: title
+        },
+        success: function(response) {
+          row.remove();
+            
+          }
+    });
+  });
+
 //Update Profile list dropdown with title & request influencer data
 $("#menu-profile li a").click(function(){
   
@@ -250,6 +272,68 @@ $("#menu-profile li a").click(function(){
       }
     });
 });
+
+//Export Table to CSV
+
+function download_csv(csv, filename) {
+  let csvFile;
+  let downloadLink;
+
+  // CSV FILE
+  csvFile = new Blob([csv], {type: "text/csv"});
+
+  // Download link
+  downloadLink = document.createElement("a");
+
+  // File name
+  downloadLink.download = filename;
+
+  // We have to create a link to the file
+  downloadLink.href = window.URL.createObjectURL(csvFile);
+
+  // Make sure that the link is not displayed
+  downloadLink.style.display = "none";
+
+  // Add the link to your DOM
+  document.body.appendChild(downloadLink);
+
+  // Lanzamos
+  downloadLink.click();
+}
+
+function export_table_to_csv(html, filename) {
+let csv = [];
+let rows = document.querySelectorAll("#results-table tr");
+console.log(rows)
+
+  for (var i = 0; i < rows.length; i++) {
+  let row = [], cols = rows[i].querySelectorAll("td, th");
+  console.log(row)
+  
+      for (var j = 0; j < 6; j++) 
+          row.push(`"${cols[j].innerText}"`);
+      
+  csv.push(row.join(","));		
+}
+
+  // Download CSV
+  download_csv(csv.join("\n"), filename);
+}
+
+document.querySelector("#export").addEventListener("click", function () {
+  var html = document.querySelector("#results-table").outerHTML;
+export_table_to_csv(html, "table.csv");
+});
+
+
+// //Sort the table by the header
+// $(document).ready(function () {
+//   $('#results-table').DataTable({
+//   "ordering": false // false to disable sorting (or any other option)
+//   });
+//   $('.dataTables_length').addClass('bs-select');
+//   });
+
 
 // Load all users lists
 
