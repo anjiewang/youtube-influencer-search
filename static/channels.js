@@ -301,28 +301,70 @@ function download_csv(csv, filename) {
   downloadLink.click();
 }
 
-function export_table_to_csv(html, filename) {
-let csv = [];
-let rows = document.querySelectorAll("#results-table tr");
-console.log(rows)
+// function export_results_table_to_csv(html, filename) {
+// let csv = [];
+// let rows = document.querySelectorAll("#results-table tr");
+// console.log(rows)
 
-  for (var i = 0; i < rows.length; i++) {
-  let row = [], cols = rows[i].querySelectorAll("td, th");
-  console.log(row)
+//   for (var i = 0; i < rows.length; i++) {
+//   let row = [], cols = rows[i].querySelectorAll("td, th");
+//   console.log(row)
   
-      for (var j = 0; j < 6; j++) 
-          row.push(`"${cols[j].innerText}"`);
-      
-  csv.push(row.join(","));		
-}
+//       for (var j = 0; j < 10; j++) 
+//           if (j = 7) { 
+//             row.push(`"${cols[j].children().attr('href')}"`)
+//           } else {
+//           row.push(`"${cols[j].innerText}"`);
+//           }
 
-  // Download CSV
-  download_csv(csv.join("\n"), filename);
-}
+
+//       //escape all commas
+//       //string replace with \,
+//       row = row.replace(",", "\,")
+      
+//   csv.push(row.join(","));		
+// }
+
+//   // Download CSV
+//   download_csv(csv.join("\n"), filename);
+// }
+
+// document.querySelector("#export").addEventListener("click", function () {
+//   var html = document.querySelector("#results-table").outerHTML;
+// export_results_table_to_csv(html, "results.csv");
+// });
+
+function export_profile_table_to_csv(html, filename) {
+  let csv = [];
+  let rows = document.querySelectorAll("#profile-table tr");
+  console.log(rows)
+  
+    for (var i = 0; i < rows.length; i++) {
+    let row = [], cols = rows[i].querySelectorAll("td, th");
+    console.log(row)
+    
+        for (var j = 0; j < cols.length; j++) 
+            if (j === 6 && i > 0) { 
+              row.push(cols[j].lastElementChild.getAttribute("href"))
+            } else {
+              let col = (`"${cols[j].innerText}"`.replace(",", "\,"));
+              row.push(col);
+          }
+  
+  
+        //escape all commas
+        //string replace with \,
+        
+    csv.push(row.join(","));		
+  }
+  
+    // Download CSV
+    download_csv(csv.join("\n"), filename);
+  }
 
 document.querySelector("#export").addEventListener("click", function () {
-  var html = document.querySelector("#results-table").outerHTML;
-export_table_to_csv(html, "table.csv");
+  var html = document.querySelector("#profile-table").outerHTML;
+export_profile_table_to_csv(html, "results.csv");
 });
 
 

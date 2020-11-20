@@ -82,8 +82,13 @@ def youtube_video_search():
     # next_page_token = request.form.get("next_page_token")
 
     title_keywords = request.form.get("title_keywords").split("\n")
+    if title_keywords == ['']:
+        title_keywords = None
     print(title_keywords)
-    desc_keywords = request.form.get('desc_keywords')
+
+    desc_keywords = request.form.get('desc_keywords').split("\n")
+    if desc_keywords == ['']:
+        desc_keywords = None
     print(desc_keywords)
 
 
