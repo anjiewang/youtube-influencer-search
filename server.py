@@ -30,11 +30,16 @@ def index():
     return render_template('main.html')
 
 @app.route('/profile')
-def load_lists_page():
-    
+def load():
+    list_count = crud.count_total_lists(current_user.user_id)
+    print(f'THE LIST COUNT IS {list_count}')
+    inf_count = crud.count_total_influencers_saved(current_user.user_id)
+    print(f'THE INFLUENCER COUNT IS {inf_count}')
+    print(current_user.email)
     lists = crud.get_list_by_user(current_user.user_id)
-    return render_template('profile.html', lists=lists)
 
+    return render_template('profile.html', name=current_user.email, lists=lists, list_count=list_count, inf_count=inf_count)
+    
 
 @app.route('/api/load_lists', methods=["POST"])
 def load_lists():
@@ -191,7 +196,12 @@ def signup():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.email)
+    list_count = crud.count_total_lists(current_user.user_id)
+    print(f'THE LIST COUNT IS {list_count}')
+    inf_count = crud.count_total_influencers_saved(current_user.user_id)
+    print(current_user.email)
+
+    return render_template('profile.html', name=current_user.email, list_count=list_count, inf_count=inf_count)
 
 @app.route('/logout')
 @login_required

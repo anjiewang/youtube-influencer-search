@@ -10,6 +10,15 @@
   
   /* Darker background on mouse-over */
 
+.boxes {
+    width: 100px;
+    border: 3px solid green;
+    padding: 50px;
+    margin: 20px;
+
+}
+
+
 
 #results-table-div {
     margin : 20px;
