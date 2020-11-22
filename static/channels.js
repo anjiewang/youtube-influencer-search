@@ -196,6 +196,67 @@ $(document).on("click", "#button-add", function(){
     });
   }});
 
+  //Enrich Profiles
+$(document).on("click", "#enrich", function(){
+  $("#enrich").text("Loading...")
+  let channel_titles = [];
+  
+  let rows = document.querySelectorAll("#profile-table tr");
+  
+  for (var i = 1; i < rows.length; i++) {
+    let row = [], cols = rows[i].querySelectorAll("td, th");
+    let col = (`${cols[0].innerText}`.replace(",", "\,"));
+    let obj = {};
+    obj["title"] = col;
+    console.log(obj);
+    row.push(obj);
+    
+        // for (var j = 0; j < 1; j++) {
+        //       let col = (`${cols[j].innerText}`.replace(",", "\,"));
+              // obj["title"] = col
+              // console.log(obj)
+              // row.push(obj);
+
+    channel_titles.push(obj)
+    console.log(row)
+    console.log(channel_titles)		
+
+  }
+  
+  $.ajax({
+        url: '/api/enrich',
+        type: 'POST', //make this a POST request
+        data: {
+          channel_titles: JSON.stringify(channel_titles)
+        },
+        success: function(response) {
+          $("#enrich").text("Enrich Profiles")
+          let i = 0
+          // $('#first-row').append('<th>IG Username</th>')
+          // $(this).find('th').eq(6).after('<th>IG Username</th>');
+          $('#first-row').children().eq(6).after('<th>IG Username</th>');
+          $('#first-row').children().eq(7).after('<th>IG Followers</th>');
+          
+          $('#profile-table').find('tr').each(function(index){
+            // $(this).find('th').eq(6).after('<th>IG Username</th>');
+            // console.log($('#profile-table').index('tr'))
+            if (index != 0) {
+              let trHTML = ""
+              trHTML += `<td>${response[i].ig_username}</td>`
+              trHTML += `<td>${response[i].ig_followers}</td>`
+              console.log(trHTML)
+
+              $(this).find('td').eq(6).after(trHTML);
+              i += 1
+            } 
+          
+          }
+          )
+        }
+      }
+    );
+    });
+
 
   //Remove influencer from a list 
 
@@ -331,14 +392,10 @@ function download_csv(csv, filename) {
 //   download_csv(csv.join("\n"), filename);
 // }
 
-// document.querySelector("#export").addEventListener("click", function () {
-//   var html = document.querySelector("#results-table").outerHTML;
-// export_results_table_to_csv(html, "results.csv");
-// });
 
-function export_profile_table_to_csv(html, filename) {
+function export_table_to_csv(html, filename, table_name) {
   let csv = [];
-  let rows = document.querySelectorAll("#profile-table tr");
+  let rows = document.querySelectorAll(`${table_name} tr`);
   console.log(rows)
   
     for (var i = 0; i < rows.length; i++) {
@@ -353,9 +410,6 @@ function export_profile_table_to_csv(html, filename) {
               row.push(col);
           }
   
-  
-        //escape all commas
-        //string replace with \,
         
     csv.push(row.join(","));		
   }
@@ -364,9 +418,14 @@ function export_profile_table_to_csv(html, filename) {
     download_csv(csv.join("\n"), filename);
   }
 
-document.querySelector("#export").addEventListener("click", function () {
+document.querySelector("#export").addEventListener("click", function (evt) { //targetattribute = button that was clicked that resulted in event
   var html = document.querySelector("#profile-table").outerHTML;
-export_profile_table_to_csv(html, "results.csv");
+export_table_to_csv(html, "results.csv", "#profile-table");
+});
+
+document.querySelector("#export").addEventListener("click", function () {
+  var html = document.querySelector("#results-table").outerHTML;
+export_table_to_csv(html, "results.csv", "#results-table");
 });
 
 
