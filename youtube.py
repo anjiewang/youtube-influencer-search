@@ -139,7 +139,6 @@ class YoutubeVideoData:
 
 
             filtered_channels = self.check_channels(channel_list)
-            print(filtered_channels)
                 
             count = len(filtered_channels)
             print(f'now the count is {count}')

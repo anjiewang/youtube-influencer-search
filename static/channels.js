@@ -364,35 +364,6 @@ function download_csv(csv, filename) {
   downloadLink.click();
 }
 
-// function export_results_table_to_csv(html, filename) {
-// let csv = [];
-// let rows = document.querySelectorAll("#results-table tr");
-// console.log(rows)
-
-//   for (var i = 0; i < rows.length; i++) {
-//   let row = [], cols = rows[i].querySelectorAll("td, th");
-//   console.log(row)
-  
-//       for (var j = 0; j < 10; j++) 
-//           if (j = 7) { 
-//             row.push(`"${cols[j].children().attr('href')}"`)
-//           } else {
-//           row.push(`"${cols[j].innerText}"`);
-//           }
-
-
-//       //escape all commas
-//       //string replace with \,
-//       row = row.replace(",", "\,")
-      
-//   csv.push(row.join(","));		
-// }
-
-//   // Download CSV
-//   download_csv(csv.join("\n"), filename);
-// }
-
-
 function export_table_to_csv(html, filename, table_name) {
   let csv = [];
   let rows = document.querySelectorAll(`${table_name} tr`);
