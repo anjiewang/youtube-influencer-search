@@ -38,8 +38,10 @@ def load():
     print(f'THE INFLUENCER COUNT IS {inf_count}')
     print(current_user.email)
     lists = crud.get_list_by_user(current_user.user_id)
+    contacted = crud.count_total_influencers_contacted(current_user.user_id)
+    first_name = crud.get_first_name(current_user.user_id)
 
-    return render_template('profile.html', name=current_user.email, lists=lists, list_count=list_count, inf_count=inf_count)
+    return render_template('profile.html', name=first_name, lists=lists, list_count=list_count, inf_count=inf_count, contacted=contacted)
     
 
 @app.route('/api/load_lists', methods=["POST"])
@@ -58,6 +60,7 @@ def load_lists():
             "video_count" : influencer.video_count,
             "email" : influencer.email,
             "url" : influencer.URL,
+            "contacted" : influencer.contacted
             }
             channel_list.append(channel_dict)
     
@@ -148,6 +151,15 @@ def remove_influencer():
 
     return jsonify(success=True)
 
+@app.route('/api/contacted', methods=["POST"])
+def mark_contacted():
+    list_title = request.form.get("list_title")
+    channel_title = request.form.get("channel_title")
+
+    crud.mark_contacted(current_user.user_id, list_title, channel_title)
+
+    return jsonify(success=True)
+
 @app.route('/api/enrich', methods =["POST"])
 def enrich_profiles():
     channel_titles = request.form.get("channel_titles")
@@ -199,6 +211,8 @@ def signup():
 
     email = request.form.get('email')
     password = request.form.get('password')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
 
     user = crud.get_user_by_email(email)
 
@@ -206,9 +220,9 @@ def signup():
         flash('Email address already exists')
         return redirect('/signup')
 
-    crud.create_user(email, generate_password_hash(password, method='sha256'))
+    crud.create_user(email, generate_password_hash(password, method='sha256'), first_name, last_name)
 
-    return render_template('profile.html', name=current_user.email)
+    return render_template('profile.html', name=first_name)
 
 @app.route('/profile')
 @login_required

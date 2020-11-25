@@ -317,24 +317,83 @@ $("#menu-profile li a").click(function(){
     },
     success: function(response) {
       let trHTML = '';
+      let trHTMLbottom = '';
       // $.each(response, function (i, item) {
         for (channel of response.channels) {
-          trHTML += `<tr><td> ${channel.title} </td>
-          <td> ${channel.description} </td>
-          <td> ${channel.video_count} </td>
-          <td> ${channel.view_count} </td>
-          <td> ${channel.subscriber_count} </td>
-          <td> ${(channel.email)} </td>
-          <td> <a target='_blank' href=${channel.url}>Link</a></td>
-          <td> <button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove-profile">Remove</button><br>
-          </tr>`;
+          console.log(channel)
+          console.log(channel.contacted)
+          if ((channel.contacted) === true){
+            console.log(channel)
+            trHTMLbottom += `<tr style="background-color:#989898"><td> ${channel.title} </td>
+            <td> ${channel.description} </td>
+            <td> ${channel.video_count} </td>
+            <td> ${channel.view_count} </td>
+            <td> ${channel.subscriber_count} </td>
+            <td> ${channel.email} </td>
+            <td> <a target='_blank' href=${channel.url}>Link</a></td>
+            <td> <button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove-profile">Remove</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-info" id="button-contacted">Contact</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-warning" id="button-star">Star</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-primary" id="button-clear">Clear</button>
+            </tr>`;
+        } else {
+            trHTML += `<tr><td> ${channel.title} </td>
+            <td> ${channel.description} </td>
+            <td> ${channel.video_count} </td>
+            <td> ${channel.view_count} </td>
+            <td> ${channel.subscriber_count} </td>
+            <td> ${channel.email} </td>
+            <td> <a target='_blank' href=${channel.url}>Link</a></td>
+            <td> <button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove-profile">Remove</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-info" id="button-contacted">Contact</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-warning" id="button-star">Star</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-primary" id="button-clear">Clear</button>
+            </tr>`;
         }
+      }
       // });
       $('#profile-table').append(trHTML);
-        
+      $('#profile-table').append(trHTMLbottom);
+
+      
       }
     });
 });
+
+//Mark an influencer as contacted
+$(document).on("click", "#button-contacted", function(){
+  let row = $(this).closest("tr");
+  let title = row.find("td:nth-child(1)").text().trim();
+  // row.insertAfter($("table tr:last"));
+  // row.css('background-color','#989898');
+  // row.find('#button-contacted').addClass('btn-success').removeClass('btn-info').text("Contacted")
+  // css('background-color', "green")
+  
+
+  $.ajax({
+    url: '/api/contacted',
+    type: 'POST', //make this a POST request
+    data: {
+      list_title: $('#profile-list').text().trim(),
+      channel_title: title
+    },
+    success: function(response) {
+      row.css('background-color','#989898');
+      row.insertAfter($("table tr:last"));
+      row.find('#button-contacted').addClass('btn-success').removeClass('btn-info').text("Contacted");
+        
+      }
+});
+});
+
+//Star an Influencer
+$(document).on("click", "#button-star", function(){
+  let row = $(this).closest("tr");
+  row.insertAfter($("table tr:first"));
+  row.css('background-color','#FDF2CF');
+  row.find('#button-star').addClass('btn-success').removeClass('btn-info').text("Starred").attr("id","button-starred");
+});
+
 
 //Export Table to CSV
 

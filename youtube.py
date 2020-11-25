@@ -110,7 +110,7 @@ class YoutubeVideoData:
                 "part" : "snippet,statistics,contentOwnerDetails,topicDetails",
                 "key" : self.api_key,
                 "id" : ",".join(second_set.difference(self.channel_ids)),
-                "maxResults" : 50
+                "maxResults" : 10
             }
 
             request = requests.get(channel_url, params=channel_params)
