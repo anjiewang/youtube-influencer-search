@@ -21,14 +21,23 @@ API_KEY = "AIzaSyB7gBd3yJ6to16PESYfMIcgbf4eP2l60OI"
 kw_search = YoutubeVideoData(API_KEY)
 
 
-@app.route('/')
-def index():
+@app.route('/search')
+def search():
 
     if current_user.is_authenticated:
         lists = crud.get_list_by_user(current_user.user_id)
         return render_template('main.html', lists=lists)
+    else:
+        flash('Please log in or sign up.')
+        return redirect('/login')
 
     return render_template('main.html')
+
+@app.route('/')
+def index():
+
+    return render_template('index.html')
+
 
 @app.route('/profile')
 def load():

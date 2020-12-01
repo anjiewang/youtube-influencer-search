@@ -332,7 +332,7 @@ $("#menu-profile li a").click(function(){
             <td> ${channel.email} </td>
             <td> <a target='_blank' href=${channel.url}>Link</a></td>
             <td> <button type="button" class="btn btn-primary btn-sm btn-danger" id="button-remove-profile">Remove</button><br><br>
-            <button type="button" class="btn btn-primary btn-sm btn-info" id="button-contacted">Contact</button><br><br>
+            <button type="button" class="btn btn-primary btn-sm btn-info" id="button-contacted">Contacted</button><br><br>
             <button type="button" class="btn btn-primary btn-sm btn-warning" id="button-star">Star</button><br><br>
             <button type="button" class="btn btn-primary btn-sm btn-primary" id="button-clear">Clear</button>
             </tr>`;
