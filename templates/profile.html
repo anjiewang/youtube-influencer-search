@@ -1,0 +1,142 @@
+{% extends "index.html" %}
+
+{% block body %}
+<body>
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+
+<!-- <div id="wrapper">
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+          <a href="#">
+              Welcome, {{ name }}
+          </a>
+      </li>
+      <li>
+          <a href="/">New Search</a>
+      </li>
+      <li>
+          <a href="/my_lists" id="my_lists">My Lists</a>
+      </li>
+      <li>
+          <a href="#">Overview</a>
+      </li>
+      <li>
+          <a href="#">Events</a>
+      </li>
+      <li>
+          <a href="#">About</a>
+      </li>
+      <li>
+          <a href="#">Services</a>
+      </li>
+      <li>
+          <a href="#">Contact</a>
+      </li>
+  </ul>
+</div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+<!-- <div id="wrapper">
+<div id="page-content-wrapper">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-12">
+          </div>
+      </div>
+  </div>
+</div>
+
+Page content -->
+
+<div class="container my-5">
+
+
+  <!--Section: Content-->
+  <section class="p-5 z-depth-1">
+    
+    <h2 class="text-center mb-5">Welcome back, {{ name }}</h2>
+
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-md-6 col-lg-3 mb-4 text-center boxes">
+        <h4 class="h1 font-weight-normal mb-3">
+          <i class="fas fa-file-alt indigo-text"></i>
+          <span class="d-inline-block count-up" data-from="0" data-to="{{ list_count }}" data-time="500">{{ list_count }}</span>
+        </h4>
+        <p class="font-weight-normal">Total Lists</p>
+      </div>
+
+      <div class="col-md-6 col-lg-3 mb-4 text-center boxes">
+        <h4 class="h1 font-weight-normal mb-3">
+          <i class="fas fa-layer-group indigo-text"></i>
+          <span class="d-inline-block count1" data-from="0" data-to="{{ inf_count }}" data-time="500">{{ inf_count }}</span>
+        </h4>
+        <p class="font-weight-normal">Influencers Saved</p>
+      </div>
+
+      <div class="col-md-6 col-lg-3 mb-4 text-center boxes">
+        <h4 class="h1 font-weight-normal mb-3">
+          <i class="fas fa-layer-group indigo-text"></i>
+          <span class="d-inline-block count1" data-from="0" data-to="{{ contacted }}" data-time="500">{{ contacted }}</span>
+        </h4>
+        <p class="font-weight-normal">Influencers Contacted</p>
+      </div>
+
+    </div>
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
+
+<div id="results-table-div">
+  <div class="btn-group">
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="profile-list" href="#">
+      Select a List <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu btn" id="menu-profile">
+    {% for item in lists %}
+      <li><a>{{ item.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+<br>
+<br>
+
+<button type="button" class="btn btn-warning" id ="enrich">Enrich Profiles</button>
+<button type="button" class="btn btn-secondary" id ="export">Export to CSV</button>
+
+
+<h3 id="list-name"></h3>
+<br>
+
+
+
+    <table class="table table-bordered table-striped results-table" id="profile-table">
+      <thead>
+      <tr id="first-row">
+        <th id="title">Title</td>
+        <th id="description">Description</td>
+        <th id="videocount">Video Count</td>
+        <th id="viewcount">View Count</td>
+        <th id="subcount">Subscriber Count</td>
+        <th id="email">Email</td>
+        <th id="url">URL</td>
+        <th id="actions">Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}
