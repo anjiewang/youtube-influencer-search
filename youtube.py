@@ -148,8 +148,6 @@ class YoutubeVideoData:
         
         final_channels = self.get_emails(filtered_channels)
 
-        #variable to count how close I am to 50
-        #if variable < 50 call the API again
 
         return final_channels, tokens
         

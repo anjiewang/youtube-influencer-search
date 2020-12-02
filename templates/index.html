@@ -97,61 +97,7 @@
     <div style="text-align:center; padding-top:25px;"><a href="/search" class="btn btn-danger btn-rounded justify-content-center" id="get-started">Get Started</a></div>
 
 
-    <!-- <form id="search-form">
-        <div class="form-row justify-content-center" style="margin-top:15px">
-            <!-- <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Keyword
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item">Video ID</a>
-        </div>
-    </div> -->
-
-    <!-- <div class="btn-group">
-        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="keyword-video" href="#">
-          Keyword <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu btn" id="keyword-video-dropdown">
-          <li id="option1"><a>Video URL</a></li>
-          <li id="option1"><a>Keyword</a></li>
-        </ul>
-      </div>
-
-
-            <div class="col-8"><input type="text" class="form-control" id="keywords" name="search" placeholder="Enter new search" required>
-            </div>
-            <input type="submit" class="btn btn-danger" value="Submit"> 
-            </div> -->
- 
-
-        <!-- <div class="form-group">
-        <div style="margin-top:25px"><p>
-            <a data-toggle="collapse" href="#filter-menu" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Show Filters
-            </a>
-          </p>
-          <div class="collapse" id="filter-menu">
-            <div class="form-row justify-content-center" style="margin-top:15px">
-                <div class="col-5">
-                    <h6>Channel Title Does Not Contain</h6><textarea class="form-control" id="title-contains" name="title-contains"></textarea>
-              </div>
-                    
-              <div class="col-5">
-                  <h6>Channel Description Does Not Contain</h6> <textarea class="form-control" id="desc-contains" name="desc-contains"></textarea>
-              </div>
-<div class="form-row" style="margin-top:15px">
-          <div class="col-5">
-            <h6>Minimum Subscribers</h6> <input type="text" class="form-control" id="min-subscribers" name="min_subscribers">
-        </div>
-              
-        <div class="col-5">
-            <h6>Maximum Subscribers</h6> <input type="text" class="form-control" id="max-subscribers" name="max_subscribers">
-        </div>
-
     </div>
-    
-</div> --></div>
         </div>      
 </div>
 
@@ -179,7 +125,6 @@
     <h1 class="section-header" style="padding-top:5px">Features</h1><br>
       <br>
 
-        <!-- Example row of columns -->
         <div class="row">
           <div class="features-col col-md-3">
             <h4><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -235,90 +180,7 @@
 
 
 
-<!-- <div id="results-table-div">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create New List</button>
 
-    
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="new-list-title">Create a New List</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="list-form">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label" id="title_title">Title</label>
-                <input type="text" class="form-control" id="list_title">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
-            <button type="button" class="btn btn-primary" id="save_list">Save List</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-                                    
-
-
-        <div class="btn-group">
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdown-list" href="#">
-              Select a List <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu btn" id="dropdown-menu">
-            {% for item in lists %}
-              <li><a>{{ item.title }}</a></li>
-            {% endfor %}
-            </ul>
-          </div>
-          <button type="button" class="btn btn-primary" id ="export">Export to CSV</button>
-<br>
-<br>
-
-
-
-<h3>Results</h3>
-
-    <table class="table table-bordered table-striped" id="results-table">
-    <thead>
-        <tr>
-        <th id="title">Title</td>
-        <th id="description">Description</td>
-        <th id="videocount">Video Count</td>
-        <th id="viewcount">View Count</td>
-        <th id="subcount">Subscriber Count</td>
-        <th id="email">Email</td>
-        <th id="url">URL</td>
-        <th id="actions">Actions</td>
-    </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-    </table>
-
-<nav aria-label="...">
-    <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" href="#" id="next-page">Next</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div id="videos">
-        </div>
-    </div>
-</div> -->
 {% endblock %}
 <script src="/static/channels.js"></script>
 

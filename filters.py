@@ -1,22 +1,5 @@
 import re
 
-# filters = [filter_by_subs]
-
-# def meets_criteria(channel_list):
-    
-#     is_us()
-    
-#     return True
-
-
-# def check_channels():
-#     filtered_channels = []
-#     for channel in channels:
-#         if meets_criteria(channel) == True:
-#             filtered_channels.append(channel)
-#     return filtered_channels
-
-# def is_us():
 
 
 
