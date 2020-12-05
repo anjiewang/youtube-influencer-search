@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 from sqlalchemy.sql import func
 import datetime
+import os
 
 db = SQLAlchemy()
 

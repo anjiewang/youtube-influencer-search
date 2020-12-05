@@ -102,8 +102,10 @@ $('#save_list').on('click', (evt) => {
       list_title: $('#list_title').val(),
     },
     success: function(response) {
-      alert('Successfully added')
-      location.reload(true)
+      $("#dropdown-menu").append(`<li><a>${$('#list_title').val()}</a></li>`)
+      $('.modal-body').html("Successfully added")
+      // location.reload(true)
+
       // $('.modal-body').html("Successfully added");
       // $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
   
@@ -124,7 +126,7 @@ $("#exampleModal").on("hidden.bs.modal", function(){
 
 //Update Dropdown list with Selected List Title
 
-$("#dropdown-menu li a").click(function(){
+$(document).on("click", "#dropdown-menu li a", function(){
   
   $("#dropdown-list:first-child").html($(this).text()+' <span class="caret"></span>');
   
