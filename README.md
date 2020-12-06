@@ -14,51 +14,52 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 
 ## Site
 
-###### **Landing Page**
+### **Landing Page**
 ![Landing Page](/demo/landing_page.gif)
-\
 
-###### **Run a Search**
+
+### **Run a Search**
 ![Search](/demo/search.gif)
-\
 
-###### **Results**
+
+### **Results**
 ![Results](/demo/results.png)
-\
 
-###### **Create Lists & Save Influencers**
+
+### **Create Lists & Save Influencers**
 ![Create](/demo/create_list.gif)
-\
 
-###### **Export to CSV**
+
+### **Export to CSV**
 ![CSV](/demo/csv.png)
-\
 
-###### **User Dashboard**
+
+### **User Dashboard**
 ![Dashboard](/demo/dashboard.gif)
-\
 
-###### **Enrich Profiles**
+
+### **Enrich Profiles**
 ![Enrich](/demo/enrich.gif)
-\
 
-###### **Star / Mark as Contacted**
+
+### **Star / Mark as Contacted**
 ![Contact](/demo/contact.gif)
 
 ## Enrich Profiles Scraping
 The enrich profiles feature allows users to augment Youtube channel information with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
-\
+
+
 ![Scrape](/demo/yahoo_search.png)
 
 
 ## Tech Stack
 
+- [Youtube Data API](https://developers.google.com/youtube/v3/docs)
+- [Scraper API] (https://www.scraperapi.com/)
+- [Python Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Bootstrap 4.0](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 - Flask / Jinja
 - jQuery / Ajax
-- Youtube Data API
-- Scraper API
-- Python BeautifulSoup
-- Boostrap 
 - Postgres DB / SqlAlchemy
 
 
