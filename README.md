@@ -1,11 +1,11 @@
 # Youtube Influencer Search Engine
 
-The Youtube Influencer Search Engine is a tool that allows users to query the Youtube API for channels related to a particular topic or video which can then be saved, enriched, and exported in a personal dashboard. 
+The Youtube Influencer Search Engine allows users to query the Youtube API for channels related to a particular topic or video which can then be saved, enriched, and exported in a personal dashboard. 
 
 ## Key Features
 
-- Search for relevant channels by Keyword or Video URL
-- Filter out irrelevant Channel Titles or Descriptions 
+- Search for relevant channels by keyword or video URL
+- Filter out irrelevant channel titles or descriptions 
 - Filter by a minimum or maximum number of subscribers
 - Export results to CSV
 - Create an account and save lists of influencers to a personal dashboard 
@@ -18,7 +18,7 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 ![Landing Page](/demo/landing_page.gif)
 
 
-### **Run a Search**
+### **Search**
 ![Search](/demo/search.gif)
 
 
@@ -46,16 +46,16 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 ![Contact](/demo/contact.gif)
 
 ## Enrich Profiles Scraping
-The enrich profiles feature allows users to augment Youtube channel information with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
-
-
+The enrich profiles feature allows users to augment Youtube channel statistics with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
+\
+\
 ![Scrape](/demo/yahoo_search.png)
 
 
 ## Tech Stack
 
 - [Youtube Data API](https://developers.google.com/youtube/v3/docs)
-- [Scraper API] (https://www.scraperapi.com/)
+- [ScraperAPI] (https://www.scraperapi.com/)
 - [Python Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [Bootstrap 4.0](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 - Flask / Jinja
