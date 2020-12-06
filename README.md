@@ -4,7 +4,7 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 
 ## Key Features
 
-- Search by Keyword or Video URL
+- Search for relevant channels by Keyword or Video URL
 - Filter out irrelevant Channel Titles or Descriptions 
 - Filter by a minimum or maximum number of subscribers
 - Export results to CSV
@@ -14,23 +14,41 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 
 ## Site
 
-Landing Page
+**Landing Page**
 ![Landing Page](/demo/landing_page.gif)
-
-Run a Search
+\
+\
+**Run a Search**
 ![Search](/demo/search.gif)
-
-Results
+\
+\
+**Results**
 ![Results](/demo/results.gif)
+\
+\
+**Create Lists & Save Influencers**
+![Create](/demo/create_list.gif)
+\
+\
+**Export to CSV**
+![CSV](/demo/csv.png)
+\
+\
+**User Dashboard**
+![Dashboard](/demo/dashboard.gif)
+\
+\
+**Enrich Profiles**
+![Enrich](/demo/enrich.gif)
+\
+\
+**Star / Mark as Contacted**
+![Contact](/demo/contact.gif)
 
-Create Lists & Save Influencers
+## Enrich Profiles Scraping
+The enrich profiles feature allows users to augment Youtube channel information with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
+![Scrape](/demo/yahoo_search.png)
 
-
-Export to CSV
-
-Enrich Profiles
-
-Star / Mark as Contacted
 
 ## Tech Stack
 
