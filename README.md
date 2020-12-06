@@ -17,31 +17,31 @@ The Youtube Influencer Search Engine is a tool that allows users to query the Yo
 ###### **Landing Page**
 ![Landing Page](/demo/landing_page.gif)
 \
-\
+
 ###### **Run a Search**
 ![Search](/demo/search.gif)
 \
-\
+
 ###### **Results**
-![Results](/demo/results.gif)
+![Results](/demo/results.png)
 \
-\
+
 ###### **Create Lists & Save Influencers**
 ![Create](/demo/create_list.gif)
 \
-\
+
 ###### **Export to CSV**
 ![CSV](/demo/csv.png)
 \
-\
+
 ###### **User Dashboard**
 ![Dashboard](/demo/dashboard.gif)
 \
-\
+
 ###### **Enrich Profiles**
 ![Enrich](/demo/enrich.gif)
 \
-\
+
 ###### **Star / Mark as Contacted**
 ![Contact](/demo/contact.gif)
 
