@@ -9,7 +9,7 @@ The Youtube Influencer Search Engine allows users to query the Youtube API for c
 - Filter by a minimum or maximum number of subscribers
 - Export results to CSV
 - Create an account and save lists of influencers to a personal dashboard 
-- Enrich Youtube channel data with scraped Instagram username and follower counts
+- Scrape Instagram username and follower counts for Youtube channels
 - Organize influencers in the dashboard by starring or marking as contacted
 
 ## Site
@@ -42,8 +42,8 @@ The Youtube Influencer Search Engine allows users to query the Youtube API for c
 ![Enrich](/demo/enrich.gif)
 
 
-### **Star / Mark as Contacted**
-![Contact](/demo/contact.gif)
+<!-- ### **Star / Mark as Contacted**
+![Contact](/demo/contact.gif) -->
 
 ## Enrich Profiles Scraping
 The enrich profiles feature allows users to augment Youtube channel statistics with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
