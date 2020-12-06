@@ -44,10 +44,7 @@ def index():
 @app.route('/profile')
 def load():
     list_count = crud.count_total_lists(current_user.user_id)
-    print(f'THE LIST COUNT IS {list_count}')
     inf_count = crud.count_total_influencers_saved(current_user.user_id)
-    print(f'THE INFLUENCER COUNT IS {inf_count}')
-    print(current_user.email)
     lists = crud.get_list_by_user(current_user.user_id)
     contacted = crud.count_total_influencers_contacted(current_user.user_id)
     first_name = crud.get_first_name(current_user.user_id)
@@ -98,31 +95,24 @@ def youtube_video_search():
         max_subscriber_count = sys.maxsize
 
     search_type = request.form.get("type")
-    print(f'HELLO the search_type is {search_type}')
-    # next_page_token = request.form.get("next_page_token")
 
     title_keywords = request.form.get("title_keywords").split("\n")
     if title_keywords == ['']:
         title_keywords = None
-    print(title_keywords)
 
     if title_keywords is not None:
         if '' in title_keywords:
             title_keywords.remove('')
 
-    print(title_keywords)
-
     desc_keywords = request.form.get('desc_keywords').split("\n")
     
     if desc_keywords == ['']:
         desc_keywords = None
-    print(desc_keywords)
 
     if desc_keywords is not None:
         if '' in desc_keywords:
             desc_keywords.remove('')
 
-    print(desc_keywords)
 
 
     # kw_search = YoutubeVideoData(API_KEY, query, order, min_subscriber_count, max_subscriber_count, next_page_token)
@@ -142,12 +132,6 @@ def create_new_list():
 
     return list_title
 
-# @app.route('/api/add_influencer', methods=["POST"])
-# def add_new_influencer():
-
-#     # list_id = #need to get the list ID of the list that is selected in the dropdown
-    
-#     # add_influencer():
 
 @app.route('/api/add_influencer', methods=["POST"])
 def add_influencer():
@@ -187,21 +171,11 @@ def mark_contacted():
 @app.route('/api/enrich', methods =["POST"])
 def enrich_profiles():
     channel_titles = request.form.get("channel_titles")
-    print(channel_titles)
     channel_obj = json.loads(channel_titles)
-    print(channel_obj[0]["title"])
-    print((channel_obj[0]["title"].replace(" ","+")))
-    print(channel_obj)
 
-    # instagram_data = scraping.scrape_yahoo(channel_obj)
+    instagram_data = scraping.scrape_yahoo(channel_obj)
 
-
-    instagram_data = [{'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}]
-    print(instagram_data)
-
-    time.sleep(1)
-
-    # instagram_data = jsonify([{'title': 'Dr Dray', 'ig_username': 'drdrayzday', 'ig_followers': '228.8k'}, {'title': 'All Things Adrienne', 'ig_username': 'allthingsadriennehoughton', 'ig_followers': '294.1k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '287.8k'}])
+    # instagram_data = [{'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}]
 
     return jsonify(instagram_data)
 
@@ -257,7 +231,6 @@ def signup():
 @login_required
 def profile():
     list_count = crud.count_total_lists(current_user.user_id)
-    print(f'THE LIST COUNT IS {list_count}')
     inf_count = crud.count_total_influencers_saved(current_user.user_id)
     print(current_user.email)
 

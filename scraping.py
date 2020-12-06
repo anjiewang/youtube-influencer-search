@@ -4,8 +4,11 @@ import re
 import os
 from bs4 import BeautifulSoup
 
+"""Scrape Yahoo search results for the Instagram username and Follower count"""
 
 def create_yahoo_url(channel_list):
+    """Create the yahoo search URL from the channel title"""
+
     urls = []
 
     for channel in channel_list:
@@ -15,6 +18,7 @@ def create_yahoo_url(channel_list):
     return urls
 
 def scrape_yahoo(channel_list, retries=3):
+    "Scrape the first page of a Yahoo search and parse HTML"""
 
     urls = create_yahoo_url(channel_list)
 
@@ -43,10 +47,8 @@ def scrape_yahoo(channel_list, retries=3):
             if re.search("See Instagram photos", str_item):
                 followers = re.findall("(?<=\>)(.*?)(?=\ F)",str_item)
                 followers = "".join(followers)
-                print(followers)
                 username = re.findall("(?<=@)(.+?)(?=\))", str_item)
                 username = "".join(username).strip('<b>/')
-                print(username)
                 channel_list[count]["ig_username"] = username
                 channel_list[count]["ig_followers"] = followers
             else:

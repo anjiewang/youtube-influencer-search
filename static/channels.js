@@ -5,11 +5,6 @@
 $('#search-form').on('submit', (evt) => {
     evt.preventDefault();
     $("#results-table tbody tr").remove();
-
-    // if ($('#keyword-video').text().trim() === "Select") {
-    //   evt.preventDefault();
-    //   alert("Please select a video or keyword search");
-    // }
     
     $.ajax({
       url: '/api/search',
@@ -104,13 +99,6 @@ $('#save_list').on('click', (evt) => {
     success: function(response) {
       $("#dropdown-menu").append(`<li><a>${$('#list_title').val()}</a></li>`)
       $('.modal-body').html("Successfully added")
-      // location.reload(true)
-
-      // $('.modal-body').html("Successfully added");
-      // $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
-  
-      // $.each(response, function (i, item) {
-      //     console.log(response)
         
   }
 });
@@ -142,27 +130,6 @@ $("#keyword-video-dropdown li a").click(function(){
 
 //Add Influencer to List when Add Button is Clicked
 
-// $("#add-button").click(function(){
-  
-//   $.ajax({
-//     url: '/api/add_influencer',
-//     type: 'POST', //make this a POST request
-//     data: {
-//       list_title: $('#list_title').val(),
-//       $(this).closest("tr")
-//     },
-//     success: function(response) {
-//       $('.modal-body').html("Successfully added");
-//       $('#dropdown-menu').append(`<li><a>${response}</a></li>`);
-//       $.each(response, function (i, item) {
-//           console.log(response)
-// ;
-        
-//       });
-//       $('#results-table').append(trHTML);
-//   }
-// });
-// });
 
 $(document).on("click", "#button-add", function(){
   if ($('#dropdown-list').text().trim() === "Select a List") {
@@ -186,7 +153,7 @@ $(document).on("click", "#button-add", function(){
 
   $.ajax({
         url: '/api/add_influencer',
-        type: 'POST', //make this a POST request
+        type: 'POST',
         data: {
           list_title: $('#dropdown-list').text().trim(),
           row_data: row_data_obj
@@ -198,7 +165,7 @@ $(document).on("click", "#button-add", function(){
     });
   }});
 
-  //Enrich Profiles
+//Enrich Profiles
 $(document).on("click", "#enrich", function(){
   $("#enrich").text("Loading...")
   let channel_titles = [];
@@ -212,12 +179,7 @@ $(document).on("click", "#enrich", function(){
     obj["title"] = col;
     console.log(obj);
     row.push(obj);
-    
-        // for (var j = 0; j < 1; j++) {
-        //       let col = (`${cols[j].innerText}`.replace(",", "\,"));
-              // obj["title"] = col
-              // console.log(obj)
-              // row.push(obj);
+  
 
     channel_titles.push(obj)
     console.log(row)
@@ -227,7 +189,7 @@ $(document).on("click", "#enrich", function(){
   
   $.ajax({
         url: '/api/enrich',
-        type: 'POST', //make this a POST request
+        type: 'POST',
         data: {
           channel_titles: JSON.stringify(channel_titles)
         },
@@ -273,7 +235,7 @@ $(document).on("click", "#enrich", function(){
   
     $.ajax({
           url: '/api/remove_influencer',
-          type: 'POST', //make this a POST request
+          type: 'POST',
           data: {
             list_title: $('#dropdown-list').text().trim(),
             channel_title: title
@@ -313,14 +275,13 @@ $("#menu-profile li a").click(function(){
 
   $.ajax({
     url: '/api/load_lists',
-    type: 'POST', //make this a POST request
+    type: 'POST',
     data: {
       list_title: $('#profile-list').text().trim(),
     },
     success: function(response) {
       let trHTML = '';
       let trHTMLbottom = '';
-      // $.each(response, function (i, item) {
         for (channel of response.channels) {
           console.log(channel)
           console.log(channel.contacted)
@@ -353,7 +314,6 @@ $("#menu-profile li a").click(function(){
             </tr>`;
         }
       }
-      // });
       $('#profile-table').append(trHTML);
       $('#profile-table').append(trHTMLbottom);
 
@@ -366,10 +326,6 @@ $("#menu-profile li a").click(function(){
 $(document).on("click", "#button-contacted", function(){
   let row = $(this).closest("tr");
   let title = row.find("td:nth-child(1)").text().trim();
-  // row.insertAfter($("table tr:last"));
-  // row.css('background-color','#989898');
-  // row.find('#button-contacted').addClass('btn-success').removeClass('btn-info').text("Contacted")
-  // css('background-color', "green")
   
 
   $.ajax({
@@ -461,71 +417,3 @@ export_table_to_csv(html, "results.csv", "#results-table");
 });
 
 
-// //Sort the table by the header
-// $(document).ready(function () {
-//   $('#results-table').DataTable({
-//   "ordering": false // false to disable sorting (or any other option)
-//   });
-//   $('.dataTables_length').addClass('bs-select');
-//   });
-
-
-// Load all users lists
-
-// $(document).on("click", "#load-lists", function(){
-  
-//   $.ajax({
-//     url: '/api/load_lists',
-//     type: 'POST', //make this a POST request
-//     data: {
-//     },
-//     success: function(response) {
-//       let tableHTML = ""
-//       for (lst of response) {
-//         tableHTML += `<tr><td> ${lst.list_id} </td>
-//             <td> ${lst.list_title} </td>
-//             <td> <button type="button" class="btn btn-primary btn-sm btn-success" id="remove-list">Remove</button><br>
-//             </tr>`
-//       }
-//       $('#page-content-wrapper').append(tableHTML)
-//       }
-
-// (function ($){
-//   $.fn.counter = function() {
-//     const $this = $(this),
-//     numberFrom = parseInt($this.attr('data-from')),
-//     numberTo = parseInt($this.attr('data-to')),
-//     delta = numberTo - numberFrom,
-//     deltaPositive = delta > 0 ? 1 : 0,
-//     time = parseInt($this.attr('data-time')),
-//     changeTime = 10;
-    
-//     let currentNumber = numberFrom,
-//     value = delta*changeTime/time;
-//     var interval1;
-//     const changeNumber = () => {
-//       currentNumber += value;
-//       //checks if currentNumber reached numberTo
-//       (deltaPositive && currentNumber >= numberTo) || (!deltaPositive &&currentNumber<= numberTo) ? currentNumber=numberTo : currentNumber;
-//       this.text(parseInt(currentNumber));
-//       currentNumber == numberTo ? clearInterval(interval1) : currentNumber;  
-//     }
-
-//     interval1 = setInterval(changeNumber,changeTime);
-//   }
-// }(jQuery));
-
-// $(document).ready(function(){
-
-//   $('.count-up').counter();
-//   $('.count1').counter();
-//   $('.count2').counter();
-//   $('.count3').counter();
-  
-//   new WOW().init();
-  
-//   setTimeout(function () {
-//     $('.count5').counter();
-//   }, 3000);
-// });
-  

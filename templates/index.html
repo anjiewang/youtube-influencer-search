@@ -8,8 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" crossorigin></script>
-    <script src="https://unpkg.com/underscore@1.11.0/underscore-min.js" crossorigin></script> -->
     <script
     src="http://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -62,32 +60,8 @@
 {% block body %}
 <body class="index-body">
 
-
-      <!-- <div class="navbar-end">
-        <a href="/" class="navbar-item">
-            Home
-        </a>
-        {% if current_user.is_authenticated %}
-        <a href="/profile" class="navbar-item">
-            Profile
-        </a>
-        {% endif %}
-        {% if not current_user.is_authenticated %}
-        <a href="/login" class="navbar-item">
-            Login
-        </a>
-        <a href="/signup" class="navbar-item">
-            Sign Up
-        </a>
-        {% endif %}
-        {% if current_user.is_authenticated %}
-        <a href="/logout" class="navbar-item">
-            Logout
-        </a>
-        {% endif %}
-    </div> -->
-    {% endblock %}
-    {% block content %}
+{% endblock %}
+{% block content %}
 <div class="container-fluid header-section">
 <div class="container">
     <br>
