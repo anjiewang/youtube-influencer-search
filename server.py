@@ -196,7 +196,7 @@ def enrich_profiles():
     # instagram_data = scraping.scrape_yahoo(channel_obj)
 
 
-    instagram_data = [{'title': 'alessya farrugia', 'ig_username': 'alessyafarrugiaa', 'ig_followers': '315.7k'}, {'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}]
+    instagram_data = [{'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}]
     print(instagram_data)
 
     time.sleep(5)
