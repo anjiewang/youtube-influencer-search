@@ -55,7 +55,7 @@ The enrich profiles feature allows users to augment Youtube channel statistics w
 ## Tech Stack
 
 - [Youtube Data API](https://developers.google.com/youtube/v3/docs)
-- [ScraperAPI] (https://www.scraperapi.com/)
+- [ScraperAPI](https://www.scraperapi.com/)
 - [Python Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [Bootstrap 4.0](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 - Flask / Jinja
