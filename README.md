@@ -41,12 +41,10 @@ The Youtube Influencer Search Engine allows users to query the Youtube API for c
 ![Contact](/demo/contact.gif)
 
 ## Enrich Profiles Scraping
-
-### **Enrich Profiles**
-![Enrich](/demo/enrich.gif)
-\
-\
 The enrich profiles feature allows users to augment Youtube channel statistics with Instagram usernames and follower counts by scraping the HTML of the first page of a Yahoo Search for the channel name. The HTML is parsed using Python's BeautifulSoup library for the Instagram username and follower count. 
+\
+\
+![Enrich](/demo/enrich.gif)
 \
 \
 ![Scrape](/demo/yahoo_search.png)
