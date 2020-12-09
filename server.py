@@ -173,11 +173,9 @@ def enrich_profiles():
     channel_titles = request.form.get("channel_titles")
     channel_obj = json.loads(channel_titles)
 
-    # instagram_data = scraping.scrape_yahoo(channel_obj)
+    instagram_data = scraping.scrape_yahoo(channel_obj)
 
-    time.sleep(1)
-
-    instagram_data = [{'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}]
+    # instagram_data = [{'title': 'Hyram', 'ig_username': 'skincarebyhyram', 'ig_followers': '1.1m'}, {'title': 'IAMKARENO', 'ig_username': 'iamkareno', 'ig_followers': '567.7k'}, {'title': 'SACHEU', 'ig_username': 'sacheu', 'ig_followers': '290.1k'}, {'title': 'Mixed Makeup', 'ig_username': 'mixedmakeup', 'ig_followers': '137.5k'}]
 
     return jsonify(instagram_data)
 
